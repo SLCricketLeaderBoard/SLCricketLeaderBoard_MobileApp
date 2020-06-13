@@ -18,12 +18,29 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
+    final tittle = Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Text(
+        'CrickDom',
+        style: TextStyle(fontSize: 28.0, color: Colors.yellow),
+        textAlign: TextAlign.center,
+      ),
+    );
+
+    final subtittle = Padding(
+      padding: EdgeInsets.all(5.0),
+      child: Text(
+        'SL Domestic Cricket Scorecard',
+        style: TextStyle(fontSize: 15.0, color: Colors.yellow),
+        textAlign: TextAlign.center,
+      ),
+    );
+
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-
-      initialValue: 'ruwan@gmail.com',
       decoration: InputDecoration(
+        prefixIcon: Icon(Icons.email),
         hintText: 'Email',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
@@ -32,11 +49,10 @@ class _LoginPageState extends State<LoginPage> {
 
     final password = TextFormField(
       autofocus: false,
-      initialValue: 'some password',
       obscureText: true,
       decoration: InputDecoration(
+        prefixIcon: Icon(Icons.security),
         hintText: 'Password',
-        fillColor: Colors.white,
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -57,29 +73,31 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    final forgotLabel = FlatButton(
-      child: Text(
-        'Forgot password?',
-        style: TextStyle(color: Colors.black54),
-      ),
-      onPressed: () {},
-    );
+    // final forgotLabel = FlatButton(
+    //   child: Text(
+    //     'Forgot password?',
+    //     style: TextStyle(color: Colors.black54),
+    //   ),
+    //   onPressed: () {},
+    // );
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.grey[800],
       body: Center(
         child: ListView(
           shrinkWrap: true,
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
             logo,
+            tittle,
+            subtittle,
             SizedBox(height: 48.0),
             email,
             SizedBox(height: 8.0),
             password,
             SizedBox(height: 24.0),
             loginButton,
-            forgotLabel
+            // forgotLabel
           ],
         ),
       ),
