@@ -53,12 +53,12 @@ class _LoginPageState extends State<LoginPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
       controller: emailController,
-      validator: (value) {
-        if(value.isEmpty){
-          return 'Enter email address';
-        }
-        return null;
-      },
+      // validator: (value) {
+      //   if(value.isEmpty){
+      //     print('Enter email address') ;
+      //   }
+      //   return null;
+      // },
       onChanged: (value) {
 
       },
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
       autofocus: false,
       obscureText: true,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.security),
+        prefixIcon: Icon(Icons.lock),
         hintText: 'Password',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
@@ -82,13 +82,9 @@ class _LoginPageState extends State<LoginPage> {
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () {
-          if(_formkey.currentState.validate()){
             Navigator.push(context,
             MaterialPageRoute(builder: (context) =>
             new HomePage(value: emailController.text,)));
-          }
-
-          // Navigator.of(context).pushNamed(HomePage.tag);
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
@@ -115,9 +111,19 @@ class _LoginPageState extends State<LoginPage> {
             tittle,
             subtittle,
             SizedBox(height: 48.0),
-            email,
-            SizedBox(height: 8.0),
-            password,
+            Form(
+              child: Column(
+                key: _formkey,
+                children: <Widget>[
+                  email,
+                  SizedBox(height: 8.0),
+                  password,
+                ]
+
+              )
+
+            ),
+
             SizedBox(height: 24.0),
             loginButton,
             // forgotLabel

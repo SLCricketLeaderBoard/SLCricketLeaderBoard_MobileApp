@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+
 class HomePage extends StatelessWidget {
   final String value;
   HomePage({Key key, this.value}) : super(key: key);
+
 
   static String tag = 'home-page';
 
@@ -25,7 +27,7 @@ class HomePage extends StatelessWidget {
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        'Welcome Alucard',
+        this.value,  // email adress
         style: TextStyle(fontSize: 28.0, color: Colors.white),
       ),
     );
