@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "257798589248",
-    "firebase_url": "https://crickdom-11920.firebaseio.com",
-    "project_id": "crickdom-11920",
-    "storage_bucket": "crickdom-11920.appspot.com"
+    "project_number": "1029328553838",
+    "firebase_url": "https://crickdom-3accd.firebaseio.com",
+    "project_id": "crickdom-3accd",
+    "storage_bucket": "crickdom-3accd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:257798589248:android:af4edeb79268e7af0c08a5",
+        "mobilesdk_app_id": "1:1029328553838:android:d027835fea43ca11dca37f",
         "android_client_info": {
           "package_name": "com.ruwan.crickdom"
         }
       },
       "oauth_client": [
         {
-          "client_id": "257798589248-bm42u0sld0vohohaddh29cua7mdfv8f0.apps.googleusercontent.com",
+          "client_id": "1029328553838-fqf3fgnhfbkk22ahj9mcsssq3n6i2qij.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAxDF0Ex3PNlUNALQ8cabO_vcKbTy4dQd4"
+          "current_key": "AIzaSyD1ZG4knR34B8Tt19KINbP8SdsFTvIrKbg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "257798589248-bm42u0sld0vohohaddh29cua7mdfv8f0.apps.googleusercontent.com",
+              "client_id": "1029328553838-fqf3fgnhfbkk22ahj9mcsssq3n6i2qij.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
