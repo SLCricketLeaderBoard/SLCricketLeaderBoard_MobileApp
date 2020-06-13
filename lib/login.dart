@@ -8,8 +8,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final _formkey = GlobalKey<FormState>();
+
     final logo = Hero(
       tag: 'hero',
       child: CircleAvatar(
@@ -46,6 +52,16 @@ class _LoginPageState extends State<LoginPage> {
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
+      controller: emailController,
+      validator: (value) {
+        if(value.isEmpty){
+          return 'Enter email address';
+        }
+        return null;
+      },
+      onChanged: (value) {
+
+      },
     );
 
     final password = TextFormField(
@@ -66,7 +82,13 @@ class _LoginPageState extends State<LoginPage> {
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () {
-          Navigator.of(context).pushNamed(HomePage.tag);
+          if(_formkey.currentState.validate()){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) =>
+            new HomePage(value: emailController.text,)));
+          }
+
+          // Navigator.of(context).pushNamed(HomePage.tag);
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
