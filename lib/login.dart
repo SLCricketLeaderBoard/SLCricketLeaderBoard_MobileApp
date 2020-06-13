@@ -14,14 +14,15 @@ class _LoginPageState extends State<LoginPage> {
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         radius: 48.0,
-        child: Image.asset('assets/logo.png'),
+        child: Image.asset('assets/logo1.png'),
       ),
     );
 
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: 'alucard@gmail.com',
+
+      initialValue: 'ruwan@gmail.com',
       decoration: InputDecoration(
         hintText: 'Email',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -35,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
       obscureText: true,
       decoration: InputDecoration(
         hintText: 'Password',
+        fillColor: Colors.white,
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -64,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: Center(
         child: ListView(
           shrinkWrap: true,
