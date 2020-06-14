@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   final String value;
-  HomePage({Key key, this.value}) : super(key: key);
+  final String uid;
+  HomePage({Key key, this.value, this.uid}) : super(key: key);
 
 
   static String tag = 'home-page';

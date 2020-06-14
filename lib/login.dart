@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -8,13 +11,66 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formkey = GlobalKey<FormState>();
 
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+  TextEditingController emailInputController;
+  TextEditingController pwdInputController;
+
+  @override
+  void initState() {
+    emailInputController = new TextEditingController();
+    pwdInputController = new TextEditingController();
+    super.initState();
+  }
+
+  String emailValidator(String value) {
+    Pattern pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regex = new RegExp(pattern);
+    if (!regex.hasMatch(value)) {
+      return 'Email format is invalid';
+    } else {
+      return null;
+    }
+  }
+
+  String pwdValidator(String value) {
+    if (value.length < 8) {
+      return 'Password must be longer than 8 characters';
+    } else {
+      return null;
+    }
+  }
+
+
+  void signIn() async {
+    if(_formkey.currentState.validate()){
+      FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailInputController.text,
+        password: pwdInputController.text)
+        .then((currentUser) => Firestore.instance
+        .collection("user")
+        .document(currentUser.user.uid)
+        .get()
+        .then((DocumentSnapshot result) =>
+        Navigator.pushReplacement(
+          context,
+           MaterialPageRoute(
+             builder: (context) => HomePage(
+               value: result["fname"] +
+               "  ", uid: currentUser.user.uid,
+               ))))
+               .catchError((e) => print(e)))
+            .catchError((e) => print(e));
+    }
+
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
-    final _formkey = GlobalKey<FormState>();
+
 
     final logo = Hero(
       tag: 'hero',
@@ -44,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final email = TextFormField(
-      keyboardType: TextInputType.emailAddress,
+
       autofocus: false,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.email),
@@ -52,26 +108,31 @@ class _LoginPageState extends State<LoginPage> {
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
-      controller: emailController,
-      // validator: (value) {
-      //   if(value.isEmpty){
-      //     print('Enter email address') ;
-      //   }
-      //   return null;
-      // },
-      onChanged: (value) {
-
-      },
+      controller: emailInputController,
+      keyboardType: TextInputType.emailAddress,
+      validator:emailValidator
     );
 
     final password = TextFormField(
-      autofocus: false,
-      obscureText: true,
+
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.lock),
         hintText: 'Password',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+      ),
+      autofocus: false,
+      obscureText: true,
+      controller: pwdInputController,
+      validator: pwdValidator
+    );
+
+    final errorMessage = Padding(
+      padding: EdgeInsets.all(5.0),
+      child: Text(
+        'Error Message',
+        style: TextStyle(fontSize: 12.0, color: Colors.red),
+        textAlign: TextAlign.center,
       ),
     );
 
@@ -81,24 +142,12 @@ class _LoginPageState extends State<LoginPage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
-        onPressed: () {
-            Navigator.push(context,
-            MaterialPageRoute(builder: (context) =>
-            new HomePage(value: emailController.text,)));
-        },
+        onPressed: signIn,
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
         child: Text('Log In', style: TextStyle(color: Colors.white)),
       ),
     );
-
-    // final forgotLabel = FlatButton(
-    //   child: Text(
-    //     'Forgot password?',
-    //     style: TextStyle(color: Colors.black54),
-    //   ),
-    //   onPressed: () {},
-    // );
 
     return Scaffold(
       backgroundColor: Colors.grey[800],
@@ -118,13 +167,16 @@ class _LoginPageState extends State<LoginPage> {
                   email,
                   SizedBox(height: 8.0),
                   password,
+
                 ]
 
               )
 
-            ),
 
-            SizedBox(height: 24.0),
+            ),
+            SizedBox(height: 12.0),
+            errorMessage,
+            SizedBox(height: 15.0),
             loginButton,
             // forgotLabel
           ],
