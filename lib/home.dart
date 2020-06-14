@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        this.value,  // email adress
+        this.uid,  // email adress
         style: TextStyle(fontSize: 28.0, color: Colors.white),
       ),
     );

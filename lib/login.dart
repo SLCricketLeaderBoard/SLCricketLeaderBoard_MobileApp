@@ -46,19 +46,15 @@ class _LoginPageState extends State<LoginPage> {
       FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailInputController.text,
         password: pwdInputController.text)
-        .then((currentUser) => Firestore.instance
-        .collection("user")
-        .document(currentUser.user.uid)
-        .get()
-        .then((DocumentSnapshot result) =>
+        .then(( result) =>
         Navigator.pushReplacement(
           context,
            MaterialPageRoute(
              builder: (context) => HomePage(
-               value: result["fname"] +
-               "  ", uid: currentUser.user.uid,
-               ))))
-               .catchError((e) => this.errorMessage = e.message))
+               value:
+               "  ", uid: result.user.uid,
+               )))
+              )
             .catchError((e) => this.errorMessage = e.message);
     }
 
