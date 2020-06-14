@@ -12,6 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formkey = GlobalKey<FormState>();
+  // final String errorMessage;
 
   TextEditingController emailInputController;
   TextEditingController pwdInputController;
@@ -24,19 +25,16 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   String emailValidator(String value) {
-    Pattern pattern =
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = new RegExp(pattern);
-    if (!regex.hasMatch(value)) {
-      return 'Email format is invalid';
+    if (value.isEmpty) {
+      return 'Enter your email address';
     } else {
       return null;
     }
   }
 
   String pwdValidator(String value) {
-    if (value.length < 8) {
-      return 'Password must be longer than 8 characters';
+    if (value.isEmpty) {
+      return 'Enter your password';
     } else {
       return null;
     }
@@ -100,7 +98,6 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final email = TextFormField(
-
       autofocus: false,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.email),
@@ -114,7 +111,6 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final password = TextFormField(
-
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.lock),
         hintText: 'Password',
@@ -130,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
     final errorMessage = Padding(
       padding: EdgeInsets.all(5.0),
       child: Text(
-        'Error Message',
+        "Error",
         style: TextStyle(fontSize: 12.0, color: Colors.red),
         textAlign: TextAlign.center,
       ),
@@ -161,8 +157,9 @@ class _LoginPageState extends State<LoginPage> {
             subtittle,
             SizedBox(height: 48.0),
             Form(
+              key: _formkey,
               child: Column(
-                key: _formkey,
+
                 children: <Widget>[
                   email,
                   SizedBox(height: 8.0),
