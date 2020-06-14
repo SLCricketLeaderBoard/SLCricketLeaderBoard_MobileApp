@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formkey = GlobalKey<FormState>();
-  // final String errorMessage;
+  String errorMessage ='';
 
   TextEditingController emailInputController;
   TextEditingController pwdInputController;
@@ -58,8 +58,8 @@ class _LoginPageState extends State<LoginPage> {
                value: result["fname"] +
                "  ", uid: currentUser.user.uid,
                ))))
-               .catchError((e) => print(e)))
-            .catchError((e) => print(e));
+               .catchError((e) => this.errorMessage = e.message))
+            .catchError((e) => this.errorMessage = e.message);
     }
 
   }
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
     final errorMessage = Padding(
       padding: EdgeInsets.all(5.0),
       child: Text(
-        "Error",
+        "${this.errorMessage}",
         style: TextStyle(fontSize: 12.0, color: Colors.red),
         textAlign: TextAlign.center,
       ),
