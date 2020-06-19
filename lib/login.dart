@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -40,24 +40,17 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-
   void signIn() async {
     if(_formkey.currentState.validate()){
-      FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailInputController.text,
-        password: pwdInputController.text)
-        .then(( result) =>
+      Firestore.instance.collection("users")
+      .where('email', isEqualTo: this.emailInputController.text)
+      .where('password', isEqualTo: this.pwdInputController.text)
+      .snapshots().listen((event) {
         Navigator.pushReplacement(
           context,
-           MaterialPageRoute(
-             builder: (context) => HomePage(
-               value:
-               "  ", uid: result.user.uid,
-               )))
-              )
-            .catchError((e) => this.errorMessage = e.message);
+          MaterialPageRoute(builder: (context) => HomePage(value: event)));
+      });
     }
-
   }
 
 

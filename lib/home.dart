@@ -1,10 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 
 class HomePage extends StatelessWidget {
-  final String value;
-  final String uid;
-  HomePage({Key key, this.value, this.uid}) : super(key: key);
+  QuerySnapshot value;
+  HomePage({this.value}) : super();
 
 
   static String tag = 'home-page';
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        this.uid,  // email adress
+        "${value}",  // email adress
         style: TextStyle(fontSize: 28.0, color: Colors.white),
       ),
     );
