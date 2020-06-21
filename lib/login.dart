@@ -54,7 +54,11 @@ class _LoginPageState extends State<LoginPage> {
       .listen((res) {
         if(res.documents.length == 1){
           res.documents.forEach((doc) {
-          print(doc.data);
+            if(doc.data["role"] == 2){
+              print("Manager");
+            } else if(doc.data["role"] == 3){
+              print("Umpire");
+            }
          });
         }
         else {
