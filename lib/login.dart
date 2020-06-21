@@ -178,17 +178,10 @@ class _LoginPageState extends State<LoginPage> {
       validator: pwdValidator
     );
 
-    final errorMessage = Padding(
-      padding: EdgeInsets.all(5.0),
-      child: Text(
-        "${this.errorMessages}",
-        style: TextStyle(fontSize: 12.0, color: Colors.red),
-        textAlign: TextAlign.center,
-      ),
-    );
+
 
     final loginButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
+      padding: EdgeInsets.symmetric(vertical: 5.0),
       child: RaisedButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
@@ -226,9 +219,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
             ),
-            SizedBox(height: 12.0),
-            errorMessage,
-            SizedBox(height: 15.0),
+            SizedBox(height: 25.0),
             loginButton,
             // forgotLabel
           ],
