@@ -56,6 +56,10 @@ class _LoginPageState extends State<LoginPage> {
           res.documents.forEach((doc) {
             if(doc.data["role"] == 2){
               print("Manager");
+              Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage(value: doc.data["nic"])));
+
             } else if(doc.data["role"] == 3){
               print("Umpire");
             }
