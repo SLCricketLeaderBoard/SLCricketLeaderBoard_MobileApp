@@ -1,18 +1,21 @@
+// import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:toast/toast.dart';
 
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
+
   @override
   _LoginPageState createState() => new _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   final _formkey = GlobalKey<FormState>();
-  String errorMessage ='';
+  String errorMessages ='';
 
   TextEditingController emailInputController;
   TextEditingController pwdInputController;
@@ -41,15 +44,70 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void signIn() async {
+
     if(_formkey.currentState.validate()){
+
       Firestore.instance.collection("users")
       .where('email', isEqualTo: this.emailInputController.text)
       .where('password', isEqualTo: this.pwdInputController.text)
-      .snapshots().listen((event) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage(value: event)));
+      .snapshots()
+      .listen((res) {
+        if(res.documents.length == 1){
+          res.documents.forEach((doc) {
+          print(doc.data);
+         });
+        }
+        else {
+          Toast.show(
+            "Invalid Credentials",
+            context, duration: Toast.LENGTH_SHORT,
+            gravity:  Toast.BOTTOM,
+            backgroundColor: Colors.red,
+            );
+        }
+
+
       });
+
+
+      // Firestore.instance.collection("users")
+      // .where('email', isEqualTo: this.emailInputController.text)
+      // .where('password', isEqualTo: this.pwdInputController.text)
+      // .getDocuments().then((value) => {
+      //   print("Done")
+      // })
+      // .catchError((err) => {
+      //   print("Not done")
+      // });
+
+        // Firestore.instance.collection("users").document(this.emailInputController.text)
+        // .get().then((DocumentSnapshot res) => {
+          // if(res["role"] == 2){
+          //   print("Manager")
+          // }
+          // else if(res["role"] == 3){
+          //   print("Umpire")
+          // }
+
+          // Navigator.pushReplacement(
+          // context,
+          // MaterialPageRoute(builder: (context) => HomePage(value: res)))
+          // .catchError((err) => print(err))
+
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => HomePage(value: )))
+        //   .catchError((err) => this.errorMessage = err.message);
+
+
+
+
+      // .getDocuments().then((event) {
+      //   Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(builder: (context) => HomePage(value: event)))
+      //     .catchError((err) => this.errorMessage = err.message);
+      // });
     }
   }
 
@@ -115,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
     final errorMessage = Padding(
       padding: EdgeInsets.all(5.0),
       child: Text(
-        "${this.errorMessage}",
+        "${this.errorMessages}",
         style: TextStyle(fontSize: 12.0, color: Colors.red),
         textAlign: TextAlign.center,
       ),
