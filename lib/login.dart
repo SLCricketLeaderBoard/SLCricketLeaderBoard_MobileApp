@@ -63,10 +63,11 @@ class _LoginPageState extends State<LoginPage> {
               print("Manager");
               Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => HomePage(value: doc.data["nic"])));
+              MaterialPageRoute(builder: (context) => HomePage(value: doc.data)));
 
             } else if(doc.data["role"] == 3){
               print("Umpire");
+              // Upire home page route
             }
          });
         }

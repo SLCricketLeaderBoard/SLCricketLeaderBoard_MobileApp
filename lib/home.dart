@@ -3,14 +3,20 @@ import 'package:flutter/material.dart';
 
 
 
-class HomePage extends StatelessWidget {
-  final String value;
+class HomePage extends StatefulWidget {
+  static String tag = 'home-page';
+  var value;
+
   HomePage({Key key, this.value}) : super(key: key);
 
+  @override
+  _HomePageState createState() => new _HomePageState();
 
-  static String tag = 'home-page';
 
 
+}
+
+class _HomePageState extends State<HomePage>{
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,7 @@ class HomePage extends StatelessWidget {
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        this.value,  // email adress
+        widget.value["email"],  // email adress
         style: TextStyle(fontSize: 28.0, color: Colors.white),
       ),
     );
@@ -44,19 +50,15 @@ class HomePage extends StatelessWidget {
 
     final body = Container(
       width: MediaQuery.of(context).size.width,
+
       padding: EdgeInsets.all(28.0),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [
-          Colors.blue,
-          Colors.lightBlueAccent,
-        ]),
-      ),
       child: Column(
         children: <Widget>[alucard, welcome, lorem],
       ),
     );
 
     return Scaffold(
+      backgroundColor: Colors.grey[800],
       body: body,
     );
   }
