@@ -76,46 +76,6 @@ class _LoginPageState extends State<LoginPage> {
 
 
       });
-
-
-      // Firestore.instance.collection("users")
-      // .where('email', isEqualTo: this.emailInputController.text)
-      // .where('password', isEqualTo: this.pwdInputController.text)
-      // .getDocuments().then((value) => {
-      //   print("Done")
-      // })
-      // .catchError((err) => {
-      //   print("Not done")
-      // });
-
-        // Firestore.instance.collection("users").document(this.emailInputController.text)
-        // .get().then((DocumentSnapshot res) => {
-          // if(res["role"] == 2){
-          //   print("Manager")
-          // }
-          // else if(res["role"] == 3){
-          //   print("Umpire")
-          // }
-
-          // Navigator.pushReplacement(
-          // context,
-          // MaterialPageRoute(builder: (context) => HomePage(value: res)))
-          // .catchError((err) => print(err))
-
-        // Navigator.pushReplacement(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => HomePage(value: )))
-        //   .catchError((err) => this.errorMessage = err.message);
-
-
-
-
-      // .getDocuments().then((event) {
-      //   Navigator.pushReplacement(
-      //     context,
-      //     MaterialPageRoute(builder: (context) => HomePage(value: event)))
-      //     .catchError((err) => this.errorMessage = err.message);
-      // });
     }
   }
 
