@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+
+class Routes {
+  static const String contacts = '';
+  static const String events = '';
+  static const String notes = '';
+}
+
+
 class AppDrawer extends StatelessWidget {
 
 
