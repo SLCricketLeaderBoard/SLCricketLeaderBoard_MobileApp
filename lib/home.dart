@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import './Drawer/drawer.dart';
 
 
 
@@ -50,31 +51,31 @@ class HomePage extends StatelessWidget {
       ),
     );
 
-    final drawer = Container(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            child: Text("CricDom"),
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-          ),
-          ListTile(
-            title: Text("Home"),
-            onTap: () {
-              Navigator.pop(context);
-            }
-          ),
-          ListTile(
-            title: Text("Chat"),
-            onTap: () {
-              Navigator.pop(context);
-            }
-          ),
-        ]
-      ),
-    );
+    // final drawer = Container(
+    //   child: ListView(
+    //     padding: EdgeInsets.zero,
+    //     children: <Widget>[
+    //       DrawerHeader(
+    //         child: Text("CricDom"),
+    //         decoration: BoxDecoration(
+    //           color: Colors.blue,
+    //         ),
+    //       ),
+    //       ListTile(
+    //         title: Text("Home"),
+    //         onTap: () {
+    //           Navigator.pop(context);
+    //         }
+    //       ),
+    //       ListTile(
+    //         title: Text("Chat"),
+    //         onTap: () {
+    //           Navigator.pop(context);
+    //         }
+    //       ),
+    //     ]
+    //   ),
+    // );
 
     return Scaffold(
       appBar: new AppBar(
@@ -83,7 +84,7 @@ class HomePage extends StatelessWidget {
       ),
       backgroundColor: Colors.grey[800],
       body: body,
-      drawer: drawer,
+      drawer: AppDrawer(),
     );
   }
 }
