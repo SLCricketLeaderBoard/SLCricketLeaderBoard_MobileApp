@@ -3,20 +3,50 @@ import 'package:flutter/material.dart';
 
 
 
-class HomePage extends StatefulWidget {
-  static String tag = 'home-page';
+class HomePage extends StatelessWidget {
   var value;
-
   HomePage({Key key, this.value}) : super(key: key);
 
-  @override
-  _HomePageState createState() => new _HomePageState();
 
+  static String tag = 'home-page';
 
-
+  Widget _createHeader() {
+  return DrawerHeader(
+      margin: EdgeInsets.zero,
+      padding: EdgeInsets.zero,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image:  AssetImage('path/to/header_background.png'))),
+      child: Stack(children: <Widget>[
+        Positioned(
+            bottom: 12.0,
+            left: 16.0,
+            child: Text("Flutter Step-by-Step",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500))),
+      ]));
 }
 
-class _HomePageState extends State<HomePage>{
+
+Widget _createDrawerItem(
+    {IconData icon, String text, GestureTapCallback onTap}) {
+  return ListTile(
+    title: Row(
+      children: <Widget>[
+        Icon(icon),
+        Padding(
+          padding: EdgeInsets.only(left: 8.0),
+          child: Text(text),
+        )
+      ],
+    ),
+    onTap: onTap,
+  );
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +57,7 @@ class _HomePageState extends State<HomePage>{
         child: CircleAvatar(
           radius: 72.0,
           backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage('assets/logo1.png'),
+          backgroundImage: NetworkImage(this.value["profileImage"]),
         ),
       ),
     );
@@ -35,7 +65,7 @@ class _HomePageState extends State<HomePage>{
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        widget.value["email"],  // email adress
+        this.value["fullName"],
         style: TextStyle(fontSize: 28.0, color: Colors.white),
       ),
     );
@@ -57,9 +87,40 @@ class _HomePageState extends State<HomePage>{
       ),
     );
 
+    final drawer = Container(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Text("CricDom"),
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+          ),
+          ListTile(
+            title: Text("Home"),
+            onTap: () {
+              Navigator.pop(context);
+            }
+          ),
+          ListTile(
+            title: Text("Chat"),
+            onTap: () {
+              Navigator.pop(context);
+            }
+          ),
+        ]
+      ),
+    );
+
     return Scaffold(
+      appBar: new AppBar(
+        title: new Text("Home"),
+        backgroundColor: Colors.grey[500],
+      ),
       backgroundColor: Colors.grey[800],
       body: body,
+      drawer: drawer,
     );
   }
 }
