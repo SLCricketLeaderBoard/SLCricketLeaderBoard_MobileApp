@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 
 class Routes {
-  static const String contacts = '';
-  static const String events = '';
+  static const String home = '';
+  static const String profile = '';
   static const String notes = '';
 }
 
@@ -17,18 +17,18 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createHeader(),
-          _createDrawerItem(icon: Icons.contacts,text: 'Contacts',),
+          _createDrawerItem(icon: Icons.home,text: 'Home',),
+          _createDrawerItem(icon: Icons.person, text: 'Profile',),
           _createDrawerItem(icon: Icons.event, text: 'Events',),
-          _createDrawerItem(icon: Icons.note, text: 'Notes',),
-          Divider(),
-          _createDrawerItem(icon: Icons.collections_bookmark, text:           'Steps'),
-          _createDrawerItem(icon: Icons.face, text: 'Authors'),
-          _createDrawerItem(icon: Icons.account_box, text: 'Flutter Documentation'),
-          _createDrawerItem(icon: Icons.stars, text: 'Useful Links'),
-          Divider(),
-          _createDrawerItem(icon: Icons.bug_report, text: 'Report an issue'),
+          // Divider(),
+          // _createDrawerItem(icon: Icons.collections_bookmark, text:           'Steps'),
+          // _createDrawerItem(icon: Icons.face, text: 'Authors'),
+          // _createDrawerItem(icon: Icons.account_box, text: 'Flutter Documentation'),
+          // _createDrawerItem(icon: Icons.stars, text: 'Useful Links'),
+          // Divider(),
+          // _createDrawerItem(icon: Icons.bug_report, text: 'Report an issue'),
           ListTile(
-            title: Text('0.0.1'),
+            // title: Text('0.0.1'),
             onTap: () {},
           ),
         ],
@@ -43,12 +43,12 @@ class AppDrawer extends StatelessWidget {
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fill,
-              image:  AssetImage('path/to/header_background.png'))),
+              image:  AssetImage('assets/logo.png'))),
       child: Stack(children: <Widget>[
         Positioned(
-            bottom: 12.0,
+            bottom: 14.0,
             left: 16.0,
-            child: Text("Flutter Step-by-Step",
+            child: Text("SL Domestic Cricket Scorecard",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20.0,
