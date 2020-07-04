@@ -36,11 +36,7 @@ class HomePage extends StatelessWidget {
 
     final lorem = Padding(
       padding: EdgeInsets.all(8.0),
-      child: Text(
-        "Email: " +this.value["email"] + "\n" +
-        "NIC   : " + this.value["nic"] + "\n" +
-        "Contact :" + this.value["contactNumber"] + "\n"+
-        "Reg Date :" + this.value["regDate"] + "\n",
+      child: Text( "Home" + "\n" + this.value["nic"],
         style: TextStyle(fontSize: 20.0, color: Colors.white),
       ),
     );
@@ -50,7 +46,7 @@ class HomePage extends StatelessWidget {
 
       padding: EdgeInsets.all(28.0),
       child: Column(
-        children: <Widget>[alucard, welcome, lorem],
+        children: <Widget>[ welcome, lorem],
       ),
     );
 
@@ -59,6 +55,15 @@ class HomePage extends StatelessWidget {
       appBar: new AppBar(
         title: new Text("Home"),
         backgroundColor: Colors.grey[500],
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Container(
+              width: 63,
+              height: 63,
+              child: alucard,
+            ),)
+        ],
       ),
       backgroundColor: Colors.grey[800],
       body: body,
