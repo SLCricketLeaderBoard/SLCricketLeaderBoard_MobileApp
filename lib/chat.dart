@@ -41,7 +41,7 @@ class Chat extends StatelessWidget {
 
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("Home"),
+        title: new Text("Chat"),
         backgroundColor: Colors.grey[500],
       ),
       backgroundColor: Colors.grey[800],

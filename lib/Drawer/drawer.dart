@@ -1,3 +1,4 @@
+import 'package:crickdom/chat.dart';
 import 'package:crickdom/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:crickdom/home.dart';
@@ -33,7 +34,12 @@ AppDrawer({Key key, this.value}): super(key: key);
             onTap: () =>
             Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => Profile(value: this.value,))),),
-          _createDrawerItem(icon: Icons.chat, text: 'Chat',),
+          _createDrawerItem(
+            icon: Icons.chat,
+            text: 'Chat',
+            onTap: () =>
+            Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => Chat(value: this.value,))),),
         ],
       ),
     );
