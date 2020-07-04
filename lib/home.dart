@@ -67,14 +67,12 @@ class HomePage extends StatelessWidget {
         title: new Text("Home"),
         backgroundColor: Colors.grey[500],
         actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 10.0),
-            child: Container(
-              width: 63,
-              height: 63,
-              child: alucard,
-            ),),
             PopupMenuButton<String>(
+              child: Container(
+                width: 63,
+                height: 63,
+                child: alucard,
+              ),
               onSelected: (value) {
 
               },
