@@ -5,9 +5,9 @@ import './Drawer/drawer.dart';
 
 
 class HomePage extends StatelessWidget {
+  static const String routeName = '/home';
   var value;
   HomePage({Key key, this.value}) : super(key: key);
-
 
   static String tag = 'home-page';
 
@@ -37,8 +37,11 @@ class HomePage extends StatelessWidget {
     final lorem = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        this.value["email"],
-        style: TextStyle(fontSize: 16.0, color: Colors.white),
+        "Email: " +this.value["email"] + "\n" +
+        "NIC   : " + this.value["nic"] + "\n" +
+        "Contact :" + this.value["contactNumber"] + "\n"+
+        "Reg Date :" + this.value["regDate"] + "\n",
+        style: TextStyle(fontSize: 20.0, color: Colors.white),
       ),
     );
 
@@ -51,31 +54,6 @@ class HomePage extends StatelessWidget {
       ),
     );
 
-    // final drawer = Container(
-    //   child: ListView(
-    //     padding: EdgeInsets.zero,
-    //     children: <Widget>[
-    //       DrawerHeader(
-    //         child: Text("CricDom"),
-    //         decoration: BoxDecoration(
-    //           color: Colors.blue,
-    //         ),
-    //       ),
-    //       ListTile(
-    //         title: Text("Home"),
-    //         onTap: () {
-    //           Navigator.pop(context);
-    //         }
-    //       ),
-    //       ListTile(
-    //         title: Text("Chat"),
-    //         onTap: () {
-    //           Navigator.pop(context);
-    //         }
-    //       ),
-    //     ]
-    //   ),
-    // );
 
     return Scaffold(
       appBar: new AppBar(
@@ -84,7 +62,7 @@ class HomePage extends StatelessWidget {
       ),
       backgroundColor: Colors.grey[800],
       body: body,
-      drawer: AppDrawer(),
+      drawer: AppDrawer(value:this.value),
     );
   }
 }

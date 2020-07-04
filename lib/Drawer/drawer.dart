@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:crickdom/home.dart';
 
 
 class Routes {
-  static const String home = '';
+  static  String home = HomePage.routeName;
   static const String profile = '';
   static const String notes = '';
 }
 
 
 class AppDrawer extends StatelessWidget {
+  var value;
+AppDrawer({Key key, this.value}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,20 +20,14 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createHeader(),
-          _createDrawerItem(icon: Icons.home,text: 'Home',),
+          _createDrawerItem(
+            icon: Icons.home,
+            text: 'Home',
+            onTap: () =>
+            Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => HomePage(value: this.value,),)),),
           _createDrawerItem(icon: Icons.person, text: 'Profile',),
-          _createDrawerItem(icon: Icons.event, text: 'Events',),
-          // Divider(),
-          // _createDrawerItem(icon: Icons.collections_bookmark, text:           'Steps'),
-          // _createDrawerItem(icon: Icons.face, text: 'Authors'),
-          // _createDrawerItem(icon: Icons.account_box, text: 'Flutter Documentation'),
-          // _createDrawerItem(icon: Icons.stars, text: 'Useful Links'),
-          // Divider(),
-          // _createDrawerItem(icon: Icons.bug_report, text: 'Report an issue'),
-          ListTile(
-            // title: Text('0.0.1'),
-            onTap: () {},
-          ),
+          _createDrawerItem(icon: Icons.chat, text: 'Chat',),
         ],
       ),
     );
