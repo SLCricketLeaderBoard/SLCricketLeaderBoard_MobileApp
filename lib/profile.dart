@@ -14,9 +14,9 @@ class Profile extends StatelessWidget {
     final alucard = Hero(
       tag: 'hero',
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(2.0),
         child: CircleAvatar(
-          radius: 72.0,
+          radius: 50.0,
           backgroundColor: Colors.transparent,
           backgroundImage: NetworkImage(this.value["profileImage"]),
         ),
@@ -26,19 +26,99 @@ class Profile extends StatelessWidget {
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        this.value["fullName"],
+        this.value["userName"],
         style: TextStyle(fontSize: 28.0, color: Colors.white),
       ),
     );
 
-    final lorem = Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Text(
-        "Email: " +this.value["email"] + "\n" +
-        "NIC   : " + this.value["nic"] + "\n" +
-        "Contact :" + this.value["contactNumber"] + "\n"+
-        "Reg Date :" + this.value["regDate"] + "\n",
-        style: TextStyle(fontSize: 20.0, color: Colors.white),
+    final card = Container(
+      child: Column(
+        children: <Widget>[
+          Card(
+            color: Colors.white,
+            margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
+            child: ListTile(
+              leading: Icon(
+                Icons.person,
+                color: Colors.teal[900],
+              ),
+              title: Text(
+                this.value["fullName"],
+                style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+              ),
+            ),
+          ),
+          Card(
+            color: Colors.white,
+            margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
+            child: ListTile(
+              leading: Icon(
+                Icons.email,
+                color: Colors.teal[900],
+              ),
+              title: Text(
+                this.value["email"],
+                style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+              ),
+            ),
+          ),
+          Card(
+            color: Colors.white,
+            margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
+            child: ListTile(
+              leading: Icon(
+                Icons.person_pin,
+                color: Colors.teal[900],
+              ),
+              title: Text(
+                this.value["nic"],
+                style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+              ),
+            ),
+          ),
+          Card(
+            color: Colors.white,
+            margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
+            child: ListTile(
+              leading: Icon(
+                Icons.add_location,
+                color: Colors.teal[900],
+              ),
+              title: Text(
+                this.value["address"],
+                style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+              ),
+            ),
+          ),
+          Card(
+            color: Colors.white,
+            margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
+            child: ListTile(
+              leading: Icon(
+                Icons.phone,
+                color: Colors.teal[900],
+              ),
+              title: Text(
+                this.value["contactNumber"],
+                style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+              ),
+            ),
+          ),
+          Card(
+            color: Colors.white,
+            margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
+            child: ListTile(
+              leading: Icon(
+                Icons.date_range,
+                color: Colors.teal[900],
+              ),
+              title: Text(
+                this.value["regDate"],
+                style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+              ),
+            ),
+          ),
+        ]
       ),
     );
 
@@ -47,7 +127,7 @@ class Profile extends StatelessWidget {
 
       padding: EdgeInsets.all(28.0),
       child: Column(
-        children: <Widget>[alucard, welcome, lorem],
+        children: <Widget>[alucard, welcome, card],
       ),
     );
 

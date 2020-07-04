@@ -2,6 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import './Drawer/drawer.dart';
 
+class Constants {
+  static const String FirstItem = 'First Item';
+  static const String SecondItem = 'Second Item';
+  static const String ThirdItem = 'Third Item';
+
+  static const List<String> choices = <String>[
+    FirstItem,
+    SecondItem,
+    ThirdItem,
+  ];
+}
 
 
 class HomePage extends StatelessWidget {
@@ -62,7 +73,20 @@ class HomePage extends StatelessWidget {
               width: 63,
               height: 63,
               child: alucard,
-            ),)
+            ),),
+            PopupMenuButton<String>(
+              onSelected: (value) {
+
+              },
+              itemBuilder: (BuildContext context) {
+                return Constants.choices.map((String choice){
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Text(choice),
+                  );
+                }).toList();
+              },
+            )
         ],
       ),
       backgroundColor: Colors.grey[800],
