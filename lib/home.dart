@@ -1,11 +1,15 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import './Drawer/drawer.dart';
+import './login.dart';
 
 class Constants {
+
   static const String FirstItem = 'First Item';
   static const String SecondItem = 'Second Item';
-  static const String ThirdItem = 'Third Item';
+  static const String ThirdItem = 'Logout';
 
   static const List<String> choices = <String>[
     FirstItem,
@@ -47,7 +51,7 @@ class HomePage extends StatelessWidget {
 
     final lorem = Padding(
       padding: EdgeInsets.all(8.0),
-      child: Text( "Home" + "\n" + this.value["nic"],
+      child: Text( "DashBoard",
         style: TextStyle(fontSize: 20.0, color: Colors.white),
       ),
     );
@@ -74,11 +78,16 @@ class HomePage extends StatelessWidget {
                 child: alucard,
               ),
               onSelected: (value) {
-
+                if(value == Constants.ThirdItem){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+                }
               },
               itemBuilder: (BuildContext context) {
                 return Constants.choices.map((String choice){
                   return PopupMenuItem<String>(
+
                     value: choice,
                     child: Text(choice),
                   );
