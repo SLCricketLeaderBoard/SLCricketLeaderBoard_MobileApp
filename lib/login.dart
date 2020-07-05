@@ -87,7 +87,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -160,7 +159,8 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    return Scaffold(
+    return WillPopScope(
+      child: Scaffold(
       backgroundColor: Colors.grey[800],
       body: Center(
         child: ListView(
@@ -188,10 +188,15 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 25.0),
             loginButton,
-            // forgotLabel
+
           ],
         ),
       ),
-    );
+    ),
+      onWillPop: () {
+        return Future.value(false);
+      });
+
+
   }
 }

@@ -7,13 +7,13 @@ import './login.dart';
 
 class Constants {
 
-  static const String FirstItem = 'First Item';
-  static const String SecondItem = 'Second Item';
+  // static const String FirstItem = 'First Item';
+  // static const String SecondItem = 'Second Item';
   static const String ThirdItem = 'Logout';
 
   static const List<String> choices = <String>[
-    FirstItem,
-    SecondItem,
+    // FirstItem,
+    // SecondItem,
     ThirdItem,
   ];
 }
