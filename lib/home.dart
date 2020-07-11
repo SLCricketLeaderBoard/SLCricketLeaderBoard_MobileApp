@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import './Drawer/drawer.dart';
 
@@ -10,59 +9,225 @@ class HomePage extends StatelessWidget {
   HomePage({Key key, this.value}) : super(key: key);
 
   static String tag = 'home-page';
-
-
   @override
   Widget build(BuildContext context) {
-    final alucard = Hero(
-      tag: 'hero',
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: CircleAvatar(
-          radius: 72.0,
-          backgroundColor: Colors.transparent,
-          backgroundImage: NetworkImage(this.value["profileImage"]),
-        ),
-      ),
-    );
-
-    final welcome = Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Text(
-        this.value["fullName"],
-        style: TextStyle(fontSize: 28.0, color: Colors.white),
-      ),
-    );
-
-    final lorem = Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Text(
-        "Email: " +this.value["email"] + "\n" +
-        "NIC   : " + this.value["nic"] + "\n" +
-        "Contact :" + this.value["contactNumber"] + "\n"+
-        "Reg Date :" + this.value["regDate"] + "\n",
-        style: TextStyle(fontSize: 20.0, color: Colors.white),
-      ),
-    );
-
-    final body = Container(
-      width: MediaQuery.of(context).size.width,
-
-      padding: EdgeInsets.all(28.0),
-      child: Column(
-        children: <Widget>[alucard, welcome, lorem],
-      ),
-    );
-
-
     return Scaffold(
-      appBar: new AppBar(
-        title: new Text("Home"),
-        backgroundColor: Colors.grey[500],
-      ),
-      backgroundColor: Colors.grey[800],
-      body: body,
-      drawer: AppDrawer(value:this.value),
+      backgroundColor: Colors.blue[300],
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                children: <Widget>[
+                  Icon(Icons.menu, color: Colors.white,size: 52.0,),
+                  Image.asset("assets/image.png",width: 52.0,)
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(
+                "Welcome, CRICKDOM Mobile ",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.bold
+                ),
+                textAlign: TextAlign.start,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Center(
+                child: Wrap(
+                  spacing:20,
+                  runSpacing: 20.0,
+                  children: <Widget>[
+                    SizedBox(
+                      width:160.0,
+                      height: 160.0,
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                            children: <Widget>[
+                              Image.asset("assets/todo.png",width: 64.0,),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Text(
+                                " WEB",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Text(
+                                "crickdom web view",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w100
+                                ),
+                              )
+                            ],
+                            ),
+                          )
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width:160.0,
+                      height: 160.0,
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset("assets/note.png",width: 64.0,),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  Text(
+                                    "CHAT",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    "12 messages",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width:160.0,
+                      height: 160.0,
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset("assets/calendar.png",width: 64.0,),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  Text(
+                                    "DL CAL",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    "Let,s  calculate",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width:160.0,
+                      height: 160.0,
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset("assets/settings.png",width: 64.0,),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  Text(
+                                    "Settings",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    "Items",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100
+                                      
+                                        
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        )
+      )
     );
   }
 }
