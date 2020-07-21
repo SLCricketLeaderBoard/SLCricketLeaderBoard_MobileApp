@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -102,3 +103,5 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+=======
+>>>>>>> fdad719135a270d332a9db9d3d1f803f8f711f76
