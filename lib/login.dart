@@ -4,10 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home.dart';
 import 'package:toast/toast.dart';
 
-
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
-
 
   @override
   _LoginPageState createState() => new _LoginPageState();
@@ -15,7 +13,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formkey = GlobalKey<FormState>();
-  String errorMessages ='';
+  String errorMessages = '';
 
   TextEditingController emailInputController;
   TextEditingController pwdInputController;
@@ -33,9 +31,9 @@ class _LoginPageState extends State<LoginPage> {
     RegExp regex = new RegExp(pattern);
     if (value.isEmpty) {
       return 'Enter your email address';
-    } else if(!regex.hasMatch(value)) {
+    } else if (!regex.hasMatch(value)) {
       return 'Email format is invalid';
-    } else{
+    } else {
       return null;
     }
   }
@@ -49,47 +47,41 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void signIn() async {
-
-    if(_formkey.currentState.validate()){
-
-      Firestore.instance.collection("users")
-      .where('email', isEqualTo: this.emailInputController.text)
-      .where('password', isEqualTo: this.pwdInputController.text)
-      .snapshots()
-      .listen((res) {
-        if(res.documents.length == 1){
+    if (_formkey.currentState.validate()) {
+      Firestore.instance
+          .collection("users")
+          .where('email', isEqualTo: this.emailInputController.text)
+          .where('password', isEqualTo: this.pwdInputController.text)
+          .snapshots()
+          .listen((res) {
+        if (res.documents.length == 1) {
           res.documents.forEach((doc) {
-            if(doc.data["role"] == 2){
+            if (doc.data["role"] == 2) {
               print("Manager");
               Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage(value: doc.data)));
-
-            } else if(doc.data["role"] == 3){
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HomePage(value: doc.data)));
+            } else if (doc.data["role"] == 3) {
               print("Umpire");
               // Upire home page route
             }
-         });
-        }
-        else {
+          });
+        } else {
           Toast.show(
             "Invalid Credentials",
-            context, duration: Toast.LENGTH_SHORT,
-            gravity:  Toast.BOTTOM,
+            context,
+            duration: Toast.LENGTH_SHORT,
+            gravity: Toast.BOTTOM,
             backgroundColor: Colors.red,
-            );
+          );
         }
-
-
       });
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-
     final logo = Hero(
       tag: 'hero',
       child: CircleAvatar(
@@ -118,32 +110,28 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final email = TextFormField(
-      autofocus: false,
-      decoration: InputDecoration(
-        prefixIcon: Icon(Icons.email),
-        hintText: 'Email',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
-      controller: emailInputController,
-      keyboardType: TextInputType.emailAddress,
-      validator:emailValidator
-    );
+        autofocus: false,
+        decoration: InputDecoration(
+          prefixIcon: Icon(Icons.email),
+          hintText: 'Email',
+          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+        ),
+        controller: emailInputController,
+        keyboardType: TextInputType.emailAddress,
+        validator: emailValidator);
 
     final password = TextFormField(
-      decoration: InputDecoration(
-        prefixIcon: Icon(Icons.lock),
-        hintText: 'Password',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
-      autofocus: false,
-      obscureText: true,
-      controller: pwdInputController,
-      validator: pwdValidator
-    );
-
-
+        decoration: InputDecoration(
+          prefixIcon: Icon(Icons.lock),
+          hintText: 'Password',
+          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+        ),
+        autofocus: false,
+        obscureText: true,
+        controller: pwdInputController,
+        validator: pwdValidator);
 
     final loginButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 5.0),
@@ -159,43 +147,32 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     return WillPopScope(
-      child: Scaffold(
-      backgroundColor: Colors.grey[800],
-      body: Center(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          children: <Widget>[
-            logo,
-            tittle,
-            subtittle,
-            SizedBox(height: 48.0),
-            Form(
-              key: _formkey,
-              child: Column(
-
-                children: <Widget>[
-                  email,
-                  SizedBox(height: 8.0),
-                  password,
-
-                ]
-
-              )
-
-
+        child: Scaffold(
+          backgroundColor: Colors.grey[800],
+          body: Center(
+            child: ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.only(left: 24.0, right: 24.0),
+              children: <Widget>[
+                logo,
+                tittle,
+                subtittle,
+                SizedBox(height: 48.0),
+                Form(
+                    key: _formkey,
+                    child: Column(children: <Widget>[
+                      email,
+                      SizedBox(height: 8.0),
+                      password,
+                    ])),
+                SizedBox(height: 25.0),
+                loginButton,
+              ],
             ),
-            SizedBox(height: 25.0),
-            loginButton,
-
-          ],
+          ),
         ),
-      ),
-    ),
-      onWillPop: () {
-        return Future.value(false);
-      });
-
-
+        onWillPop: () {
+          return Future.value(false);
+        });
   }
 }

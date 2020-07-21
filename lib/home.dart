@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,7 +6,6 @@ import './Drawer/drawer.dart';
 import './login.dart';
 
 class Constants {
-
   // static const String FirstItem = 'First Item';
   // static const String SecondItem = 'Second Item';
   static const String ThirdItem = 'Logout';
@@ -19,14 +17,12 @@ class Constants {
   ];
 }
 
-
 class HomePage extends StatelessWidget {
   static const String routeName = '/home';
   var value;
   HomePage({Key key, this.value}) : super(key: key);
 
   static String tag = 'home-page';
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +38,14 @@ class HomePage extends StatelessWidget {
       ),
     );
 
+    final userType = Padding(
+      padding: EdgeInsets.all(5.0),
+      child: Text(
+        "Role: Manager",
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
@@ -52,56 +56,51 @@ class HomePage extends StatelessWidget {
 
     final lorem = Padding(
       padding: EdgeInsets.all(8.0),
-      child: Text( "DashBoard",
+      child: Text(
+        "DashBoard",
         style: TextStyle(fontSize: 20.0, color: Colors.white),
       ),
     );
 
     final body = Container(
       width: MediaQuery.of(context).size.width,
-
       padding: EdgeInsets.all(28.0),
       child: Column(
-        children: <Widget>[ welcome, lorem],
+        children: <Widget>[userType, welcome, lorem],
       ),
     );
-
 
     return Scaffold(
       appBar: new AppBar(
         title: new Text("Home"),
         backgroundColor: Colors.grey[500],
         actions: <Widget>[
-            PopupMenuButton<String>(
-              child: Container(
-                width: 63,
-                height: 63,
-                child: alucard,
-              ),
-              onSelected: (value) {
-                if(value == Constants.ThirdItem){
-                  Navigator.push(
-                    context,
+          PopupMenuButton<String>(
+            child: Container(
+              width: 63,
+              height: 63,
+              child: alucard,
+            ),
+            onSelected: (value) {
+              if (value == Constants.ThirdItem) {
+                Navigator.push(context,
                     MaterialPageRoute(builder: (context) => LoginPage()));
-                }
-              },
-              itemBuilder: (BuildContext context) {
-                return Constants.choices.map((String choice){
-                  return PopupMenuItem<String>(
-
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              },
-            )
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return Constants.choices.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          )
         ],
       ),
       backgroundColor: Colors.grey[800],
       body: body,
-      drawer: AppDrawer(value:this.value),
+      drawer: AppDrawer(value: this.value),
     );
   }
 }
-=======
->>>>>>> fdad719135a270d332a9db9d3d1f803f8f711f76
