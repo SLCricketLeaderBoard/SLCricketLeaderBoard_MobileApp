@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-class ReviewPage extends StatelessWidget {
+class WebPage extends StatelessWidget {
+  
   var value;
-  ReviewPage({Key key, this.value}) : super(key: key);
+  WebPage({Key key, this.value}) : super(key: key);
 
   static String tag = 'calculator-page';
   @override
