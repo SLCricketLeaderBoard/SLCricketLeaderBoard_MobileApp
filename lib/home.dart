@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import './Drawer/drawer.dart';
 import './login.dart';
@@ -37,6 +36,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
+    
 
     final content = Padding(
               padding: const EdgeInsets.all(12.0),
@@ -48,6 +48,7 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       width:160.0,
                       height: 160.0,
+
                       child: Card(
 
                         color: Color.fromARGB(255,21, 21, 21),
@@ -60,29 +61,19 @@ class HomePage extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                             children: <Widget>[
-                              Image.asset("assets/todo.png",width: 64.0,),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              Text(
-                                "Todo List",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.0
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5.0,
-                              ),
-                              Text(
-                                "2 Items",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w100
-                                ),
-                              )
+                               MaterialButton(
+                               child: Text("Profile"),
+                                  onPressed: () {
+                                 Navigator.push(
+                                 context,
+                                MaterialPageRoute(builder: (context) => HomePage()),
+                                   );
+                  },
+                                color: Colors.red,
+                                   )
+                              
                             ],
+                            
                             ),
                           )
                         ),
@@ -91,13 +82,16 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       width:160.0,
                       height: 160.0,
+                    
                       child: Card(
 
                         color: Color.fromARGB(255,21, 21, 21),
                         elevation: 2.0,
+                        
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)
                         ),
+                        
                         child:Center(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -107,6 +101,7 @@ class HomePage extends StatelessWidget {
                                   SizedBox(
                                     height: 10.0,
                                   ),
+                                  
                                   Text(
                                     "Notes",
                                     style: TextStyle(
@@ -154,7 +149,7 @@ class HomePage extends StatelessWidget {
                                     "Agenda",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                         fontWeight: FontWeight.bold,
                                         fontSize: 20.0
                                     ),
                                   ),
@@ -243,6 +238,7 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => LoginPage()));
               }
             },
+            
             itemBuilder: (BuildContext context) {
               return Constants.choices.map((String choice) {
                 return PopupMenuItem<String>(
