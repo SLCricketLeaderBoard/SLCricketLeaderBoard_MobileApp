@@ -38,37 +38,193 @@ class HomePage extends StatelessWidget {
       ),
     );
 
-    final userType = Padding(
-      padding: EdgeInsets.all(5.0),
-      child: Text(
-        "Role: Manager",
-        style: TextStyle(color: Colors.white),
-      ),
+    final content = Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Center(
+                child: Wrap(
+                  spacing:20,
+                  runSpacing: 20.0,
+                  children: <Widget>[
+                    SizedBox(
+                      width:160.0,
+                      height: 160.0,
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                            children: <Widget>[
+                              Image.asset("assets/todo.png",width: 64.0,),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Text(
+                                "Todo List",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Text(
+                                "2 Items",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w100
+                                ),
+                              )
+                            ],
+                            ),
+                          )
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width:160.0,
+                      height: 160.0,
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset("assets/note.png",width: 64.0,),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  Text(
+                                    "Notes",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    "12 Items",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width:160.0,
+                      height: 160.0,
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset("assets/calendar.png",width: 64.0,),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  Text(
+                                    "Agenda",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    "4 Items",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width:160.0,
+                      height: 160.0,
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset("assets/settings.png",width: 64.0,),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  Text(
+                                    "Settings",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    "6 Items",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+
     );
 
-    final welcome = Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Text(
-        this.value["fullName"],
-        style: TextStyle(fontSize: 28.0, color: Colors.white),
-      ),
-    );
-
-    final lorem = Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Text(
-        "DashBoard",
-        style: TextStyle(fontSize: 20.0, color: Colors.white),
-      ),
-    );
-
-    final body = Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.all(28.0),
-      child: Column(
-        children: <Widget>[userType, welcome, lorem],
-      ),
-    );
+  
 
     return Scaffold(
       appBar: new AppBar(
@@ -99,7 +255,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.grey[800],
-      body: body,
+      body: content,
       drawer: AppDrawer(value: this.value),
     );
   }
