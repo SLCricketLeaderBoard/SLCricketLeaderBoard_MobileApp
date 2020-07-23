@@ -3,6 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import './Drawer/drawer.dart';
 import './login.dart';
+import 'calculator.dart';
+import 'calender.dart';
+import 'web.dart';
+import 'review.dart';
+import 'update.dart';
+import 'note.dart';
 
 class Constants {
   // static const String FirstItem = 'First Item';
@@ -66,7 +72,7 @@ class HomePage extends StatelessWidget {
                                   onPressed: () {
                                  Navigator.push(
                                  context,
-                                MaterialPageRoute(builder: (context) => HomePage()),
+                                MaterialPageRoute(builder: (context) => CalculatorPage()),
                                    );
                   },
                                 color: Colors.red,
