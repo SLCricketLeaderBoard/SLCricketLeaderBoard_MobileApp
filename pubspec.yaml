@@ -30,6 +30,8 @@ dependencies:
   toast: ^0.1.5
   shared_preferences: ^0.5.8
   table_calendar: ^2.2.3
+  rate_my_app: ^0.6.1+6
+  smooth_star_rating: ^1.1.1
 
 dev_dependencies:
   flutter_test:
