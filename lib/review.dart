@@ -19,7 +19,7 @@ class ReviewPageState extends State<ReviewPage> {
     AppReview.getAppID.then((onValue) {
       setState(() {
         appID = onValue;
-      });
+      }); 
       print("App ID" + appID);
     });
   }
