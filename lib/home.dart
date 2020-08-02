@@ -7,7 +7,7 @@ import 'calculator.dart';
 import 'calender.dart';
 import 'web.dart';  
 import 'review.dart';
-import 'update.dart';
+import 'setting.dart';
 import 'note.dart';
 
 class Constants {
@@ -51,6 +51,7 @@ class HomePage extends StatelessWidget {
                   spacing:20,
                   runSpacing: 20.0,
                   children: <Widget>[
+                    
                     SizedBox(
                       width:160.0,
                       height: 160.0,
@@ -67,17 +68,18 @@ class HomePage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                             child: Column(
                             children: <Widget>[
+                              Image.asset("assets/logo1.png",width: 80.0,),
                                MaterialButton(
-                               child: Text("Profile"),
+                               child: Text("Calender"),
                                   onPressed: (
                                     
                                   ) {
                                  Navigator.push(
                                  context,
-                                MaterialPageRoute(builder: (context) => WebPage()),
+                                MaterialPageRoute(builder: (context) => CalenderPage()),
                                    );
                   },
-                                color: Colors.red,
+                                color: Colors.blue[500],
                                    )
                               
                             ],
@@ -90,136 +92,198 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       width:160.0,
                       height: 160.0,
+
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                          child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                            children: <Widget>[
+                              Image.asset("assets/logo1.png",width: 80.0,),
+                              
+                            
+                               MaterialButton(
+                               child: Text("Calculator"),
+                                  onPressed: (
+                                    
+                                  ) {
+                                 Navigator.push(
+                                 context,
+                                MaterialPageRoute(builder: (context) => CalculatorPage()),
+                                   );
+                  },
+                                color: Colors.blue[500],
+                                   )
+                              
+                              
+                            ],
+                            
+                            ),
+                          )
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      
+                      width:160.0,
+                      height: 160.0,
+
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                          child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                            children: <Widget>[
+                              Image.asset("assets/logo1.png",width: 80.0,),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
+                               MaterialButton(
+                               child: Text("Live Updates"),
+                                  onPressed: (
+                                    
+                                  ) {
+                                 Navigator.push(
+                                 context,
+                                MaterialPageRoute(builder: (context) => WebPage()),
+                                   );
+                  },
+                                color: Colors.blue[500],
+                                   )
+                              
+                            ],
+                            
+                            ),
+                          )
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width:160.0,
+                      height: 160.0,
+
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                          child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                            children: <Widget>[
+                              Image.asset("assets/logo1.png",width: 80.0,),
+                               MaterialButton(
+                               child: Text("Review"),
+                                  onPressed: (
+                                    
+                                  ) {
+                                 Navigator.push(
+                                 context,
+                                MaterialPageRoute(builder: (context) => ReviewPage()),
+                                   );
+                  },
+                                color: Colors.blue[500],
+                                   )
+                              
+                            ],
+                            
+                            ),
+                          )
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width:160.0,
+                      height: 160.0,
+
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                          child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                            children: <Widget>[
+                              Image.asset("assets/logo1.png",width: 72.0,),
+                               MaterialButton(
+                               child: Text("Setting"),
+                                  onPressed: (
+                                    
+                                  ) {
+                                 Navigator.push(
+                                 context,
+                                MaterialPageRoute(builder: (context) => SettingPage()),
+                                   );
+                  },
+                                color: Colors.blue[500],
+                                   )
+                              
+                            ],
+                            
+                            ),
+                          )
+                        ),
+                      ),
+                    ),SizedBox(
+                      width:160.0,
+                      height: 160.0,
+
+                      child: Card(
+
+                        color: Color.fromARGB(255,21, 21, 21),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child:Center(
+                          child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                            children: <Widget>[
+                              Image.asset("assets/logo1.png",width: 80.0,),
+                               MaterialButton(
+                               child: Text("Profile"),
+                                  onPressed: (
+                                    
+                                  ) {
+                                 Navigator.push(
+                                 context,
+                                MaterialPageRoute(builder: (context) => WebPage()),
+                                   ); 
+                  },
+                                color: Colors.blue[500],
+                                   )
+                              
+                            ],
+                            
+                            ),
+                          )
+                        ),
+                      ),
+                    ),
+
                     
-                      child: Card(
-
-                        color: Color.fromARGB(255,21, 21, 21),
-                        elevation: 2.0,
-                        
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)
-                        ),
-                        
-                        child:Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: <Widget>[
-                                  Image.asset("assets/note.png",width: 64.0,),
-                                  SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  
-                                  Text(
-                                    "Notes",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5.0,
-                                  ),
-                                  Text(
-                                    "12 Items",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w100
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width:160.0,
-                      height: 160.0,
-                      child: Card(
-
-                        color: Color.fromARGB(255,21, 21, 21),
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)
-                        ),
-                        child:Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: <Widget>[
-                                  Image.asset("assets/calendar.png",width: 64.0,),
-                                  SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  Text(
-                                    "Agenda",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                         fontWeight: FontWeight.bold,
-                                        fontSize: 20.0
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5.0,
-                                  ),
-                                  Text(
-                                    "4 Items",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w100
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width:160.0,
-                      height: 160.0,
-                      child: Card(
-
-                        color: Color.fromARGB(255,21, 21, 21),
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)
-                        ),
-                        child:Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: <Widget>[
-                                  Image.asset("assets/settings.png",width: 64.0,),
-                                  SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  Text(
-                                    "Settings",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5.0,
-                                  ),
-                                  Text(
-                                    "6 Items",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w100
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                        ),
-                      ),
-                    ),
+                   
+                    
                   ],
                 ),
               ),
@@ -258,7 +322,7 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      backgroundColor: Colors.grey[800],
+      backgroundColor: Colors.blue[900],
       body: content,
       drawer: AppDrawer(value: this.value),
     );

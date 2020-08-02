@@ -5,7 +5,7 @@ import 'calculator.dart';
 import 'calender.dart';
 import 'web.dart';
 import 'review.dart';
-import 'update.dart';
+import 'setting.dart';
 import 'note.dart';
 
 
@@ -19,9 +19,11 @@ class MyApp extends StatelessWidget {
     HomePage.tag: (context) => HomePage(),
     CalenderPage.tag: (context) => CalenderPage(),
     NotePage.tag: (context) => NotePage(),
-    UpdatePage.tag: (context) => UpdatePage(),
+    SettingPage.tag: (context) => SettingPage(),
     ReviewPage.tag: (context) => ReviewPage(),
     WebPage.tag: (context) => WebPage(),
+    
+
 
     CalculatorPage.tag: (context) => CalculatorPage(),
     
