@@ -33,6 +33,9 @@ dependencies:
   rate_my_app: ^0.6.1+6
   smooth_star_rating: ^1.1.1
   app_review: ^1.1.2
+  url_launcher: ^5.5.0
+  image: ^2.1.12
+
 
 dev_dependencies:
   flutter_test:
