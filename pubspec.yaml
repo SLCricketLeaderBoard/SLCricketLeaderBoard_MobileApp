@@ -32,6 +32,7 @@ dependencies:
   table_calendar: ^2.2.3
   rate_my_app: ^0.6.1+6
   smooth_star_rating: ^1.1.1
+  app_review: ^1.1.2
 
 dev_dependencies:
   flutter_test:

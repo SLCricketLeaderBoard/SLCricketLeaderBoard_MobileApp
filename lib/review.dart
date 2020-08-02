@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rate_my_app/rate_my_app.dart';
+import 'package:app_review/app_review.dart';
 
 
-/// The body of the main Rate my app test widget.
+
 class ReviewPage extends StatefulWidget {
   /// Creates a new Rate my app test app instance.
   const ReviewPage();
@@ -10,43 +10,110 @@ class ReviewPage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => ReviewPageState();
-}
+}  
 
-/// The body state of the main Rate my app test widget.
 class ReviewPageState extends State<ReviewPage> {
-  /// The widget builder.
-  WidgetBuilder builder = buildProgressIndicator;
-  
   @override
-  Widget build(BuildContext context) => MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Rate my app !'),
+  initState() {
+    super.initState();
+    AppReview.getAppID.then((onValue) {
+      setState(() {
+        appID = onValue;
+      });
+      print("App ID" + appID);
+    });
+  }
+
+  String appID = "";
+  String output = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      home: new Scaffold(
+        appBar: new AppBar(
+          title: new Text('App Review'),
         ),
-        body: RateMyAppBuilder(
-          builder: builder,
-          onInitialized: (context, rateMyApp) {
-            setState(() => builder = (context) => ContentWidget(rateMyApp: rateMyApp));
-                        rateMyApp.conditions.forEach((condition) {
-                          if (condition is DebuggableCondition) {
-                            print(condition.valuesAsString); // We iterate through our list of conditions and we print all debuggable ones.
-                          }
-                        });
-            
-                        print('Are all conditions met ? ' + (rateMyApp.shouldOpenDialog ? 'Yes' : 'No'));
-            
-                        if (rateMyApp.shouldOpenDialog) {
-                          rateMyApp.showRateDialog(context);
-                        }
-                      },
-                    ),
-                  ),
-              );
-              
-              /// Builds the progress indicator, allowing to wait for Rate my app to initialize.
-              static Widget buildProgressIndicator(BuildContext context) => const Center(
-                child: CircularProgressIndicator()
-              );
-            
-              ContentWidget({RateMyApp rateMyApp}) {}
+        body: new SingleChildScrollView(
+          child: new ListBody(
+            children: <Widget>[
+              new Container(
+                height: 40.0,
+              ),
+              new ListTile(
+                leading: new Icon(Icons.info),
+                title: new Text('App ID'),
+                subtitle: new Text(appID),
+                  onTap: () {
+                  AppReview.getAppID.then((onValue) {
+                    setState(() {
+                      output = onValue;
+                    });
+                    print(onValue);
+                  });
+                },
+              ),
+              new Divider(
+                height: 20.0,
+              ),
+              new ListTile(
+                leading: new Icon(
+                  Icons.shop,
+                ),
+                title: new Text('View Store Page'),
+                onTap: () {
+                  AppReview.storeListing.then((onValue) {
+                    setState(() {
+                      output = onValue;
+                    });
+                    print(onValue);
+                  });
+                },
+              ),
+              new Divider(
+                height: 20.0,
+              ),
+              new ListTile(
+                leading: new Icon(
+                  Icons.star,
+                ),
+                title: new Text('Request Review'),
+                onTap: () {
+                  AppReview.requestReview.then((onValue) {
+                    setState(() {
+                      output = onValue;
+                    });
+                    print(onValue);
+                  });
+                },
+              ),
+              new Divider(
+                height: 20.0,
+              ),
+              new ListTile(
+                leading: new Icon(
+                  Icons.note_add,
+                ),
+                title: new Text('Write a New Review'),
+                onTap: () {
+                  AppReview.writeReview.then((onValue) {
+                    setState(() {
+                      output = onValue;
+                    });
+                    print(onValue);
+                  });
+                },
+              ),
+              new Divider(
+                height: 20.0,
+              ),
+              new ListTile(
+                title: new Text(output),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
