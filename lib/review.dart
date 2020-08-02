@@ -5,11 +5,14 @@ import 'package:app_review/app_review.dart';
 
 class ReviewPage extends StatefulWidget {
   /// Creates a new Rate my app test app instance.
-  const ReviewPage();
-   static String tag = 'review-page';
+  var value;
+  ReviewPage({Key key, this.value}) : super(key: key);
 
+  static String tag = 'calculator-page';
   @override
-  State<StatefulWidget> createState() => ReviewPageState();
+  ReviewPageState createState() => ReviewPageState();
+
+
 }  
 
 class ReviewPageState extends State<ReviewPage> {
@@ -29,11 +32,16 @@ class ReviewPageState extends State<ReviewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
+    return  new Scaffold(
+      
+
+        
+
         appBar: new AppBar(
+          
           title: new Text('App Review'),
         ),
+        
         body: new SingleChildScrollView(
           child: new ListBody(
             children: <Widget>[
@@ -113,7 +121,7 @@ class ReviewPageState extends State<ReviewPage> {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }
