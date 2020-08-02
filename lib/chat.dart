@@ -21,23 +21,21 @@ class Chat extends StatelessWidget {
       ),
     );
 
-
     final bodyDetails = Padding(
       padding: EdgeInsets.all(8.0),
-      child: Text( "Chat",
+      child: Text(
+        "Chat",
         style: TextStyle(fontSize: 20.0, color: Colors.white),
       ),
     );
 
     final body = Container(
       width: MediaQuery.of(context).size.width,
-
       padding: EdgeInsets.all(28.0),
       child: Column(
-        children: <Widget>[ bodyDetails],
+        children: <Widget>[bodyDetails],
       ),
     );
-
 
     return Scaffold(
       appBar: new AppBar(
@@ -46,8 +44,7 @@ class Chat extends StatelessWidget {
       ),
       backgroundColor: Colors.grey[800],
       body: body,
-      drawer: AppDrawer(value:this.value),
+      drawer: AppDrawer(value: this.value),
     );
   }
-
 }
