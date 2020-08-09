@@ -14,23 +14,16 @@ class Club extends StatefulWidget {
 class _ClubViewState extends State<Club> {
   var _data;
   getClubData() async {
-    if (this.widget.value["role"] == 2) {
-      Firestore.instance
-          .collection("clubs")
-          .document(this.widget.value["nic"])
-          .get()
-          .then((value) => {
-                this.setState(() {
-                  _data = value.data;
-                  print(_data);
-                })
-              });
-    }
-    // print("Ruwan");
-
-    if (this.widget.value["role"] == 4) {
-      //code
-    }
+    Firestore.instance
+        .collection("clubs")
+        .document(this.widget.value["nic"])
+        .get()
+        .then((value) => {
+              this.setState(() {
+                _data = value.data;
+                print(_data);
+              })
+            });
   }
 
   @override

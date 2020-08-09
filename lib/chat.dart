@@ -4,6 +4,8 @@ import 'package:flutter/rendering.dart';
 import './Drawer/drawer.dart';
 import './Widgets/ReceiveMessageWidget.dart';
 import './Widgets/SendMessageWidget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class Chat extends StatefulWidget {
   var value;
@@ -17,10 +19,64 @@ class _ChatViewState extends State<Chat> {
   TextEditingController _text = new TextEditingController();
   ScrollController _scrollController = ScrollController();
   var childList = <Widget>[];
+  var _data;
+  var _cuurentDate;
+  var _currentTime;
+
+  void sendMessage() {
+    this.getDateTime();
+    Firestore.instance.collection("messages").add({
+      "text": _text.text,
+      "club_id": _data["club_id"],
+      "nic": this.widget.value["nic"],
+      "type": "out",
+      "time": _currentTime,
+      "Date": _cuurentDate,
+      "userName": this.widget.value["userName"],
+      "profileImage": this.widget.value["profileImage"]
+    });
+  }
+
+  void getDateTime() {
+    var now = new DateTime.now();
+    this.setState(() {
+      _cuurentDate = new DateFormat("yyyy-MM-dd").format(now);
+    });
+
+    this.setState(() {
+      _currentTime = new DateFormat("H:m").format(now);
+    });
+  }
+
+  void getClubData() async {
+    if (this.widget.value["role"] == 2) {
+      Firestore.instance
+          .collection("clubs")
+          .document(this.widget.value["nic"])
+          .get()
+          .then((value) => {
+                this.setState(() {
+                  _data = value.data;
+                })
+              });
+    } else if (this.widget.value["role"] == 4) {
+      Firestore.instance
+          .collection("clubs")
+          .document(this.widget.value["club_id"]["managerId"]["userId"]["nic"])
+          .get()
+          .then((value) => {
+                this.setState(() {
+                  _data = value.data;
+                })
+              });
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    this.getClubData();
+
     childList.add(Align(
         alignment: Alignment(0, 0),
         child: Container(
@@ -199,7 +255,9 @@ class _ChatViewState extends State<Chat> {
                           // contentPadding: const EdgeInsets.symmetric(horizontal: 5.0),
                           suffixIcon: IconButton(
                             icon: Icon(Icons.send),
-                            onPressed: () {},
+                            onPressed: () {
+                              this.sendMessage();
+                            },
                           ),
                           border: InputBorder.none,
                           hintText: "enter your message",
