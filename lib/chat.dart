@@ -22,6 +22,7 @@ class _ChatViewState extends State<Chat> {
   var _data;
   var _cuurentDate;
   var _currentTime;
+  var _messageData;
 
   void sendMessage() {
     this.getDateTime();
@@ -35,6 +36,8 @@ class _ChatViewState extends State<Chat> {
       "userName": this.widget.value["userName"],
       "profileImage": this.widget.value["profileImage"]
     });
+
+    _text.clear();
   }
 
   void getDateTime() {
@@ -90,7 +93,7 @@ class _ChatViewState extends State<Chat> {
                 })
               });
     }
-    if (this.widget.value["role"] == 2) {
+    if (this.widget.value["role"] == 4) {
       Firestore.instance
           .collection("messages")
           .where("club_id", isEqualTo: this.widget.value["club_id"]["clubId"])

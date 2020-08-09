@@ -13,6 +13,8 @@ class Club extends StatefulWidget {
 
 class _ClubViewState extends State<Club> {
   var _data;
+  bool _isImage = false;
+
   getClubData() async {
     Firestore.instance
         .collection("clubs")
@@ -21,7 +23,9 @@ class _ClubViewState extends State<Club> {
         .then((value) => {
               this.setState(() {
                 _data = value.data;
-                print(_data);
+                this.setState(() {
+                  _isImage = true;
+                });
               })
             });
   }
@@ -41,7 +45,9 @@ class _ClubViewState extends State<Club> {
         child: CircleAvatar(
           radius: 50.0,
           backgroundColor: Colors.transparent,
-          backgroundImage: NetworkImage(_data["clubLogo"]),
+          backgroundImage: _isImage
+              ? NetworkImage(_data["clubLogo"])
+              : AssetImage('assets/avatar.png'),
         ),
       ),
     );
