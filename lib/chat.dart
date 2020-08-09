@@ -72,11 +72,44 @@ class _ChatViewState extends State<Chat> {
     }
   }
 
+  void getMessages() async {
+    if (this.widget.value["role"] == 2) {
+      Firestore.instance
+          .collection("clubs")
+          .document(this.widget.value["nic"])
+          .get()
+          .then((result) => {
+                Firestore.instance
+                    .collection("messages")
+                    .where("club_id", isEqualTo: result["club_id"])
+                    .snapshots()
+                    .listen((res) {
+                  res.documents.forEach((msgs) {
+                    print(msgs.data);
+                  });
+                })
+              });
+    }
+    if (this.widget.value["role"] == 2) {
+      Firestore.instance
+          .collection("messages")
+          .where("club_id", isEqualTo: this.widget.value["club_id"]["clubId"])
+          .snapshots()
+          .listen((res) {
+        {
+          res.documents.forEach((msgs) {
+            print(msgs.data);
+          });
+        }
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     this.getClubData();
-
+    this.getMessages();
     childList.add(Align(
         alignment: Alignment(0, 0),
         child: Container(
@@ -134,7 +167,7 @@ class _ChatViewState extends State<Chat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("Chats"),
+        title: new Text(_data["clubName"] + " " + "Chat"),
         backgroundColor: Colors.grey[500],
       ),
       backgroundColor: Colors.grey[800],
