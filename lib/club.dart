@@ -12,13 +12,19 @@ class Club extends StatefulWidget {
 }
 
 class _ClubViewState extends State<Club> {
+  var _data;
   getClubData() async {
     if (this.widget.value["role"] == 2) {
       Firestore.instance
           .collection("clubs")
           .document(this.widget.value["nic"])
           .get()
-          .then((value) => {value.data});
+          .then((value) => {
+                this.setState(() {
+                  _data = value.data;
+                  print(_data);
+                })
+              });
     }
     // print("Ruwan");
 
@@ -42,8 +48,7 @@ class _ClubViewState extends State<Club> {
         child: CircleAvatar(
           radius: 50.0,
           backgroundColor: Colors.transparent,
-          backgroundImage: NetworkImage(
-              "https://firebasestorage.googleapis.com/v0/b/crickdom-3accd.appspot.com/o/club%2Fflag-button-round-250.png?alt=media&token=d3e15c36-104a-44bb-ba84-fed70903fc5e"),
+          backgroundImage: NetworkImage(_data["clubLogo"]),
         ),
       ),
     );
@@ -51,7 +56,7 @@ class _ClubViewState extends State<Club> {
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        "Test Club",
+        _data["clubName"],
         style: TextStyle(fontSize: 28.0, color: Colors.white),
       ),
     );
@@ -81,7 +86,7 @@ class _ClubViewState extends State<Club> {
               color: Colors.teal[900],
             ),
             title: Text(
-              "test@gmail.com",
+              _data["email"],
               style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
             ),
           ),
@@ -123,7 +128,7 @@ class _ClubViewState extends State<Club> {
               color: Colors.teal[900],
             ),
             title: Text(
-              "0778954712",
+              _data["contactNumber"],
               style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
             ),
           ),
@@ -137,7 +142,7 @@ class _ClubViewState extends State<Club> {
               color: Colors.teal[900],
             ),
             title: Text(
-              "Sat Aug 01 2020 21:04:30 GMT+0530 (India Standard Time)",
+              _data["regDate"],
               style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
             ),
           ),
