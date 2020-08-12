@@ -6,6 +6,7 @@ import './Widgets/ReceiveMessageWidget.dart';
 import './Widgets/SendMessageWidget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:dash_chat/dash_chat.dart';
 
 class Chat extends StatefulWidget {
   var value;
@@ -19,25 +20,30 @@ class _ChatViewState extends State<Chat> {
   TextEditingController _text = new TextEditingController();
   ScrollController _scrollController = ScrollController();
   var childList = <Widget>[];
+  ChatUser user = ChatUser();
   var _data;
   var _cuurentDate;
   var _currentTime;
   var _messageData;
 
   void sendMessage() {
-    this.getDateTime();
-    Firestore.instance.collection("messages").add({
-      "text": _text.text,
-      "club_id": _data["club_id"],
-      "nic": this.widget.value["nic"],
-      "type": "out",
-      "time": _currentTime,
-      "Date": _cuurentDate,
-      "userName": this.widget.value["userName"],
-      "profileImage": this.widget.value["profileImage"]
-    });
+    // this.getDateTime();
+    // Firestore.instance.collection("messages").add({
+    //   "text": _text.text,
+    //   "club_id": _data["club_id"],
+    //   "nic": this.widget.value["nic"],
+    //   "type": "out",
+    //   "time": _currentTime,
+    //   "Date": _cuurentDate,
+    //   "userName": this.widget.value["userName"],
+    //   "profileImage": this.widget.value["profileImage"]
+    // });
 
-    _text.clear();
+    // _text.clear();
+
+    var documentReference = Firestore.instance
+        .collection("messages")
+        .document(DateTime.now().millisecondsSinceEpoch.toString());
   }
 
   void getDateTime() {
@@ -88,7 +94,10 @@ class _ChatViewState extends State<Chat> {
                     .snapshots()
                     .listen((res) {
                   res.documents.forEach((msgs) {
-                    print(msgs.data);
+                    this.setState(() {
+                      _messageData = msgs.data;
+                      print(_messageData["text"]);
+                    });
                   });
                 })
               });
@@ -101,7 +110,9 @@ class _ChatViewState extends State<Chat> {
           .listen((res) {
         {
           res.documents.forEach((msgs) {
-            print(msgs.data);
+            this.setState(() {
+              _messageData = msgs.data;
+            });
           });
         }
       });
@@ -130,10 +141,11 @@ class _ChatViewState extends State<Chat> {
             style: TextStyle(fontSize: 11),
           )),
         )));
+
     childList.add(Align(
       alignment: Alignment(1, 0),
       child: SendedMessageWidget(
-        content: 'Hello',
+        content: "_messageData",
         time: '21:36 PM',
       ),
     ));
