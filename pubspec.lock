@@ -91,7 +91,7 @@ packages:
       name: dash_chat
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.9"
   firebase:
     dependency: transitive
     description:
