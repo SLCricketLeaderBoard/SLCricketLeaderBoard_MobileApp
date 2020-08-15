@@ -73,7 +73,8 @@ class _ChatViewState extends State<Chat> {
           .then((value) => {
                 this.setState(() {
                   _data = value.data;
-                  // user.uid = _data["club_id"];
+                  // user.uid = _data["club_id"].toString();
+                  // print(user.uid);
                 })
               });
     } else if (this.widget.value["role"] == 4) {
@@ -84,33 +85,35 @@ class _ChatViewState extends State<Chat> {
           .then((value) => {
                 this.setState(() {
                   _data = value.data;
-                  // user.uid = _data["club_id"];
+                  // user.uid = _data["club_id"].toString();
+                  // print(user.uid);
                 })
               });
     }
   }
 
-  void getMessages() async {
+  getMessages() async {
     if (this.widget.value["role"] == 2) {
       Firestore.instance
           .collection("clubs")
           .document(this.widget.value["nic"])
           .get()
           .then((result) => {
-                Firestore.instance
+                _messageData = Firestore.instance
                     .collection("messages")
                     .where("club_id", isEqualTo: result["club_id"])
                     .snapshots()
-                    .listen((res) {
-                  _messageData = res;
-                  print(_messageData.documents);
-                  // res.documents.forEach((msgs) {
-                  //   this.setState(() {
-                  //     _messageData = msgs.data;
-                  //     print(_messageData);
-                  //   });
-                  // });
-                })
+
+                // .listen((res) {
+                // _messageData = res;
+                // print(_messageData.documents);
+                // res.documents.forEach((msgs) {
+                //   this.setState(() {
+                //     _messageData = msgs.data;
+                //     // print(_messageData);
+                //   });
+                // });
+                // })
               });
     }
     if (this.widget.value["role"] == 4) {
@@ -135,59 +138,12 @@ class _ChatViewState extends State<Chat> {
   void initState() {
     this.getClubData();
     this.getMessages();
-    // print(Firestore.instance.collection("messages").snapshots());
-    // user.name = this.widget.value["userName"];
-    // user.avatar = this.widget.value["profileImage"];
+
+    user.name = this.widget.value["userName"];
+    user.avatar = this.widget.value["profileImage"];
+    user.uid = this.widget.value["nic"];
 
     super.initState();
-
-    // childList.add(Align(
-    //     alignment: Alignment(0, 0),
-    //     child: Container(
-    //       margin: const EdgeInsets.only(top: 5.0),
-    //       height: 25,
-    //       width: 50,
-    //       decoration: BoxDecoration(
-    //           color: Colors.black12,
-    //           borderRadius: BorderRadius.all(
-    //             Radius.circular(8.0),
-    //           )),
-    //       child: Center(
-    //           child: Text(
-    //         "Today",
-    //         style: TextStyle(fontSize: 11),
-    //       )),
-    //     )));
-
-    // childList.add(Align(
-    //   alignment: Alignment(1, 0),
-    //   child: SendedMessageWidget(
-    //     content: "_messageData",
-    //     time: '21:36 PM',
-    //   ),
-    // ));
-    // childList.add(Align(
-    //   alignment: Alignment(1, 0),
-    //   child: SendedMessageWidget(
-    //     content: 'How are you? What are you doing?',
-    //     time: '21:36 PM',
-    //   ),
-    // ));
-    // childList.add(Align(
-    //   alignment: Alignment(-1, 0),
-    //   child: ReceivedMessageWidget(
-    //     content: 'Hello,I am fine. How are you?',
-    //     time: '22:40 PM',
-    //   ),
-    // ));
-    // childList.add(Align(
-    //   alignment: Alignment(1, 0),
-    //   child: SendedMessageWidget(
-    //     content:
-    //         'I am good. Can you do something for me? I need your help my bro.',
-    //     time: '22:40 PM',
-    //   ),
-    // ));
   }
 
   @override
@@ -207,41 +163,42 @@ class _ChatViewState extends State<Chat> {
       ),
       backgroundColor: Colors.grey[800],
       body: StreamBuilder(
-          // stream: Firestore.instance.collection("messages").snapshots(),
+          stream: _messageData,
           builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-            ),
-          );
-        } else {
-          // List<DocumentSnapshot> items = snapshot.data.documents;
-          List<DocumentSnapshot> items = _messageData;
-          var message = items.map((e) => ChatMessage.fromJson(e.data)).toList();
-          print(message);
-          // List<ChatMessage> items = [];
-          // var messages =
-          //     items.map((i) => ChatMessage.fromJson(i.data)).toList();
-          // var messages = items.toList();
-          return DashChat(
-            user: user,
-            messages: message,
-            inputDecoration: InputDecoration(
-              hintText: "Enter your message...",
-              border: InputBorder.none,
-            ),
-            onSend: sendMessage,
-            trailing: <Widget>[
-              // IconButton(
-              //   icon: Icon(Icons.photo),
-              //   onPressed: uploadFile,
-              // )
-            ],
-          );
-        }
-      }),
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                      Theme.of(context).primaryColor),
+                ),
+              );
+            } else {
+              List<DocumentSnapshot> items = snapshot.data.documents;
+              List<ChatMessage> messg = <ChatMessage>[];
+
+              items.forEach((res) {
+                ChatMessage msg =
+                    new ChatMessage(text: res["text"], user: user);
+                messg.add(msg);
+              });
+
+              return DashChat(
+                user: user,
+                messages: messg,
+                inputDecoration: InputDecoration(
+                  hintText: "Enter your message...",
+                  border: InputBorder.none,
+                ),
+                onSend: sendMessage,
+                trailing: <Widget>[
+                  // IconButton(
+                  //   icon: Icon(Icons.photo),
+                  //   onPressed: uploadFile,
+                  // )
+                ],
+              );
+            }
+          }),
       // body: SafeArea(
       //   child: Container(
       //     child: Stack(
