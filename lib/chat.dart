@@ -18,7 +18,7 @@ class Chat extends StatefulWidget {
 
 class _ChatViewState extends State<Chat> {
   // TextEditingController _text = new TextEditingController();
-  // ScrollController _scrollController = ScrollController();
+  ScrollController _scrollController = ScrollController();
   // var childList = <Widget>[];
   ChatUser user = ChatUser();
   var _data;
@@ -39,19 +39,6 @@ class _ChatViewState extends State<Chat> {
       "profileImage": this.widget.value["profileImage"]
     });
   }
-
-  // void onSend(ChatMessage message) {
-  //   var documentReference = Firestore.instance
-  //       .collection('messages')
-  //       .document(DateTime.now().millisecondsSinceEpoch.toString());
-
-  //   Firestore.instance.runTransaction((transaction) async {
-  //     await transaction.set(
-  //       documentReference,
-  //       message.toJson(),
-  //     );
-  //   });
-  // }
 
   void getDateTime() {
     var now = new DateTime.now();
@@ -102,35 +89,16 @@ class _ChatViewState extends State<Chat> {
                 _messageData = Firestore.instance
                     .collection("messages")
                     .where("club_id", isEqualTo: result["club_id"])
+                    .orderBy("Date")
                     .snapshots()
-
-                // .listen((res) {
-                // _messageData = res;
-                // print(_messageData.documents);
-                // res.documents.forEach((msgs) {
-                //   this.setState(() {
-                //     _messageData = msgs.data;
-                //     // print(_messageData);
-                //   });
-                // });
-                // })
               });
     }
     if (this.widget.value["role"] == 4) {
-      Firestore.instance
+      _messageData = Firestore.instance
           .collection("messages")
           .where("club_id", isEqualTo: this.widget.value["club_id"]["clubId"])
-          .snapshots()
-          .listen((res) {
-        {
-          res.documents.forEach((msgs) {
-            this.setState(() {
-              _messageData = msgs.data;
-              // print(_messageData);
-            });
-          });
-        }
-      });
+          .orderBy("Date")
+          .snapshots();
     }
   }
 
@@ -154,13 +122,11 @@ class _ChatViewState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: new AppBar(
-      //   title: new Text(_data["clubName"] + " " + "Chat"),
-      //   backgroundColor: Colors.grey[500],
-      // ),
       appBar: new AppBar(
-        title: new Text("Chat"),
+        title: new Text(_data["clubName"] + " " + "Chat"),
+        backgroundColor: Colors.grey[500],
       ),
+
       backgroundColor: Colors.grey[800],
       body: StreamBuilder(
           stream: _messageData,
@@ -177,8 +143,8 @@ class _ChatViewState extends State<Chat> {
               List<ChatMessage> messg = <ChatMessage>[];
 
               items.forEach((res) {
-                ChatMessage msg =
-                    new ChatMessage(text: res["text"], user: user);
+                ChatMessage msg = new ChatMessage(
+                    text: res["text"], user: user, createdAt: DateTime.now());
                 messg.add(msg);
               });
 
