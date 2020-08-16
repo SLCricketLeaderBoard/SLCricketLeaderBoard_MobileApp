@@ -8,7 +8,7 @@ import "dart:math";
 
 
 
-class  CalculatorPage extends StatefulWidget {
+  class  CalculatorPage extends StatefulWidget {
   static const String routeName = '/calculator';
   var value;
   CalculatorPage({Key key, this.value}) : super(key: key);
@@ -24,9 +24,10 @@ class CalculatorPageState extends State<CalculatorPage> {
   String _tenureType = "Year(s)";
   String _emiResult = "";
 
-  final TextEditingController _principalAmount = TextEditingController();
-  final TextEditingController _interestRate = TextEditingController();
-  final TextEditingController _tenure = TextEditingController();
+  final TextEditingController _total1 = TextEditingController();
+  final TextEditingController _wickets1 = TextEditingController();
+  final TextEditingController _overs1 = TextEditingController();
+  final TextEditingController _overs2 = TextEditingController();
 
   bool _switchValue = true;
   
@@ -44,9 +45,9 @@ class CalculatorPageState extends State<CalculatorPage> {
           child: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(5.0),
                 child: TextField(
-                  controller: _principalAmount,
+                  controller: _total1,
                   decoration: InputDecoration(
                     labelText: "Enter Team 1 Runs"
                   ),
@@ -56,27 +57,27 @@ class CalculatorPageState extends State<CalculatorPage> {
               ),
 
               Container(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(5.0),
                 child: TextField(
-                  controller: _interestRate,
+                  controller: _wickets1,
                   decoration: InputDecoration(
-                    labelText: "Wickets"
+                    labelText: "Wickets Team 1"
                   ),
                   keyboardType: TextInputType.number,
                 )
               ),
 
               Container(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(5.0),
                 child: Row(
                   children: <Widget>[
                     Flexible(
                       flex: 4,
                       fit: FlexFit.tight,
                       child: TextField(
-                        controller: _tenure,
+                        controller: _overs1,
                         decoration: InputDecoration(
-                          labelText: "Tenure"
+                          labelText: " Total overs Team 1"
                         ),
                         keyboardType: TextInputType.number,
                       )
@@ -87,6 +88,28 @@ class CalculatorPageState extends State<CalculatorPage> {
                 )
                 
               ),
+              Container(
+                padding: EdgeInsets.all(5.0),
+                child: Row(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 4,
+                      fit: FlexFit.tight,
+                      child: TextField(
+                        controller: _overs2,
+                        decoration: InputDecoration(
+                          labelText: "Team 2 Left Overs"
+                        ),
+                        keyboardType: TextInputType.number,
+                      )
+                    ),
+
+                    
+                  ],
+                )
+                
+              ),
+              
 
               Flexible(
                 fit: FlexFit.loose,
@@ -117,11 +140,12 @@ class CalculatorPageState extends State<CalculatorPage> {
     //  n = total number of payments or periods
 
     double A = 0.0;
-    int P = int.parse(_principalAmount.text); 
-    double r = int.parse(_interestRate.text) / 12 / 100;
-    int n = _tenureType == "Year(s)" ? int.parse(_tenure.text) * 12  : int.parse(_tenure.text);
+    int P = int.parse(_total1.text); 
+    double r = int.parse(_wickets1.text) / 1 ;
+    int n1 = int.parse(_overs1.text); 
+    int n2 = int.parse(_overs1.text);
 
-    A = (P * r * pow((1+r), n) / ( pow((1+r),n) -1));
+    A = (P /n1 +((50-n1)*0.01*(10-r)))*n2 ;
     
     _emiResult = A.toStringAsFixed(2);
 
@@ -144,7 +168,7 @@ class CalculatorPageState extends State<CalculatorPage> {
       margin: EdgeInsets.only(top: 40.0),
       child: canShow ? Column(
         children: [
-          Text("Your Monthly EMI is",
+          Text("Estimated Target is  ",
             style: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.bold

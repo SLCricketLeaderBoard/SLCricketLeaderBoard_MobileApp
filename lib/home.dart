@@ -45,6 +45,7 @@ class HomePage extends StatelessWidget {
     
 
     final content = Padding(
+            
               padding: const EdgeInsets.all(12.0),
               child: Center(
                 child: Wrap(
@@ -68,7 +69,7 @@ class HomePage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                             child: Column(
                             children: <Widget>[
-                              Image.asset("assets/logo1.png",width: 80.0,),
+                              Image.asset("assets/todo.png",width: 80.0,),
                                MaterialButton(
                                child: Text("Calender"),
                                   onPressed: (
@@ -105,7 +106,7 @@ class HomePage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                             child: Column(
                             children: <Widget>[
-                              Image.asset("assets/logo1.png",width: 80.0,),
+                              Image.asset("assets/calc1.png",width: 75.0,),
                               
                             
                                MaterialButton(
@@ -146,12 +147,12 @@ class HomePage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                             child: Column(
                             children: <Widget>[
-                              Image.asset("assets/logo1.png",width: 80.0,),
+                              Image.asset("assets/li1.png",width: 70.0,),
                                   SizedBox(
                                     height: 10.0,
                                   ),
                                MaterialButton(
-                               child: Text("Live Updates"),
+                               child: Text("Live"),
                                   onPressed: (
                                     
                                   ) {
@@ -186,7 +187,7 @@ class HomePage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                             child: Column(
                             children: <Widget>[
-                              Image.asset("assets/logo1.png",width: 80.0,),
+                              Image.asset("assets/re1.png",width: 80.0,),
                                MaterialButton(
                                child: Text("Review"),
                                   onPressed: (
@@ -223,7 +224,7 @@ class HomePage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                             child: Column(
                             children: <Widget>[
-                              Image.asset("assets/logo1.png",width: 72.0,),
+                              Image.asset("assets/se1.png",width: 72.0,),
                                MaterialButton(
                                child: Text("Setting"),
                                   onPressed: (
@@ -259,7 +260,7 @@ class HomePage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                             child: Column(
                             children: <Widget>[
-                              Image.asset("assets/logo1.png",width: 80.0,),
+                              Image.asset("assets/pr1.png",width: 80.0,),
                                MaterialButton(
                                child: Text("Profile"),
                                   onPressed: (
@@ -295,8 +296,12 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("Home"),
-        backgroundColor: Colors.grey[500],
+        
+        title: new Text("WELCOME CRICKDOM"
+        
+        ),
+
+        backgroundColor: Colors.lightBlue,
         actions: <Widget>[
           PopupMenuButton<String>(
             child: Container(

@@ -50,6 +50,19 @@ flutter:
   assets:
     - assets/logo.png
     - assets/logo1.png
+    - assets/note.png
+    - assets/cale1.png
+    - assets/calc1.png
+    - assets/re1.png
+    - assets/we1.png
+    - assets/yo1.png
+    - assets/pr1.png
+    - assets/we1.png
+    - assets/se1.png
+    - assets/li1.png
+    - assets/todo.png
+    - assets/lol.png
+    
 
 
   # To add assets to your application, add an assets section, like this:

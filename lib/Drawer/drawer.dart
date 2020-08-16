@@ -73,7 +73,7 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         decoration: BoxDecoration(
             image: DecorationImage(
-                fit: BoxFit.fill, image: AssetImage('assets/logo.png'))),
+                fit: BoxFit.fill, image: AssetImage('assets/lol.png'))),
         child: Stack(children: <Widget>[
           Positioned(
               bottom: 14.0,

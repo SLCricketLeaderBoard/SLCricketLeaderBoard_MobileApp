@@ -41,15 +41,15 @@ class WebPageState extends StatelessWidget {
       
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[Image.asset("assets/logo1.png",width: 80.0,),                 
+        children: <Widget>[Image.asset("assets/we1.png",width: 80.0,),                 
           const RaisedButton(
             onPressed: _launchURL_web,
-            child: Text('Disabled Button', style: TextStyle(fontSize: 20)),
+            child: Text('CRICKDOM WEB LIVE UPDATES', style: TextStyle(fontSize: 20)),
           ),
         
          
           const SizedBox(height: 100),
-          Image.asset("assets/logo1.png",width: 80.0,),
+          Image.asset("assets/yo1.png",width: 80.0,),
           
           RaisedButton(
             
@@ -68,7 +68,7 @@ class WebPageState extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(10.0),
               child:
-                  const Text('Gradient Button', style: TextStyle(fontSize: 20)),
+                  const Text('CRICKFEVER LIVE STREAMING ', style: TextStyle(fontSize: 20)),
             ),
           ),
         ],
@@ -83,7 +83,7 @@ class WebPageState extends StatelessWidget {
  
 
 _launchURL_tube() async {
-  const url = 'https://flutter.io';
+  const url = 'https://www.youtube.com/channel/UC5ItANV2UKIt5JnKu8YLpUQ';
   if (await canLaunch(url)) {
     await launch(url);     
   } else {
