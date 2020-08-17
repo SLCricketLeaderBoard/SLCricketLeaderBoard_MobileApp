@@ -89,7 +89,7 @@ class _ChatViewState extends State<Chat> {
                 _messageData = Firestore.instance
                     .collection("messages")
                     .where("club_id", isEqualTo: result["club_id"])
-                    .orderBy("Date")
+                    .orderBy("time")
                     .snapshots()
               });
     }
@@ -97,7 +97,7 @@ class _ChatViewState extends State<Chat> {
       _messageData = Firestore.instance
           .collection("messages")
           .where("club_id", isEqualTo: this.widget.value["club_id"]["clubId"])
-          .orderBy("Date")
+          .orderBy("time")
           .snapshots();
     }
   }
@@ -144,7 +144,10 @@ class _ChatViewState extends State<Chat> {
 
               items.forEach((res) {
                 ChatMessage msg = new ChatMessage(
-                    text: res["text"], user: user, createdAt: DateTime.now());
+                  text: res["text"],
+                  user: user,
+                  createdAt: DateTime.now(),
+                );
                 messg.add(msg);
               });
 
@@ -156,6 +159,8 @@ class _ChatViewState extends State<Chat> {
                   border: InputBorder.none,
                 ),
                 onSend: sendMessage,
+                showAvatarForEveryMessage: true,
+                showUserAvatar: true,
                 trailing: <Widget>[
                   // IconButton(
                   //   icon: Icon(Icons.photo),
