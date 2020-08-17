@@ -12,17 +12,22 @@ class Club extends StatefulWidget {
 }
 
 class _ClubViewState extends State<Club> {
-  getClubData() async {
-    if (this.widget.value["role"] == 2) {
-      Firestore.instance
-          .collection("clubs")
-          .document(this.widget.value["nic"])
-          .get()
-          .then((value) => {value.data});
-    }
-    // print("Ruwan");
+  var _data;
+  bool _isImage = false;
 
-    if (this.widget.value["role"] == 4) {}
+  getClubData() async {
+    Firestore.instance
+        .collection("clubs")
+        .document(this.widget.value["nic"])
+        .get()
+        .then((value) => {
+              this.setState(() {
+                _data = value.data;
+                this.setState(() {
+                  _isImage = true;
+                });
+              })
+            });
   }
 
   @override
@@ -40,7 +45,9 @@ class _ClubViewState extends State<Club> {
         child: CircleAvatar(
           radius: 50.0,
           backgroundColor: Colors.transparent,
-          backgroundImage: NetworkImage(""),
+          backgroundImage: _isImage
+              ? NetworkImage(_data["clubLogo"])
+              : AssetImage('assets/avatar.png'),
         ),
       ),
     );
@@ -48,7 +55,7 @@ class _ClubViewState extends State<Club> {
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        this.widget.value["userName"],
+        _data["clubName"],
         style: TextStyle(fontSize: 28.0, color: Colors.white),
       ),
     );
@@ -64,7 +71,7 @@ class _ClubViewState extends State<Club> {
               color: Colors.teal[900],
             ),
             title: Text(
-              this.widget.value["fullName"],
+              "Kasun Silvaa",
               style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
             ),
           ),
@@ -78,39 +85,39 @@ class _ClubViewState extends State<Club> {
               color: Colors.teal[900],
             ),
             title: Text(
-              this.widget.value["email"],
+              _data["email"],
               style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
             ),
           ),
         ),
-        Card(
-          color: Colors.white,
-          margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
-          child: ListTile(
-            leading: Icon(
-              Icons.person_pin,
-              color: Colors.teal[900],
-            ),
-            title: Text(
-              this.widget.value["nic"],
-              style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
-            ),
-          ),
-        ),
-        Card(
-          color: Colors.white,
-          margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
-          child: ListTile(
-            leading: Icon(
-              Icons.add_location,
-              color: Colors.teal[900],
-            ),
-            title: Text(
-              this.widget.value["address"],
-              style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
-            ),
-          ),
-        ),
+        // Card(
+        //   color: Colors.white,
+        //   margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
+        //   child: ListTile(
+        //     leading: Icon(
+        //       Icons.person_pin,
+        //       color: Colors.teal[900],
+        //     ),
+        //     title: Text(
+        //       this.widget.value["nic"],
+        //       style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+        //     ),
+        //   ),
+        // ),
+        // Card(
+        //   color: Colors.white,
+        //   margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
+        //   child: ListTile(
+        //     leading: Icon(
+        //       Icons.add_location,
+        //       color: Colors.teal[900],
+        //     ),
+        //     title: Text(
+        //       this.widget.value["address"],
+        //       style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+        //     ),
+        //   ),
+        // ),
         Card(
           color: Colors.white,
           margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
@@ -120,7 +127,7 @@ class _ClubViewState extends State<Club> {
               color: Colors.teal[900],
             ),
             title: Text(
-              this.widget.value["contactNumber"],
+              _data["contactNumber"],
               style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
             ),
           ),
@@ -134,7 +141,7 @@ class _ClubViewState extends State<Club> {
               color: Colors.teal[900],
             ),
             title: Text(
-              this.widget.value["regDate"],
+              _data["regDate"],
               style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
             ),
           ),
