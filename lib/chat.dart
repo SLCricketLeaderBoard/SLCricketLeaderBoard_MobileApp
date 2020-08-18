@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import './Drawer/drawer.dart';
-import './Widgets/ReceiveMessageWidget.dart';
-import './Widgets/SendMessageWidget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:dash_chat/dash_chat.dart';
@@ -159,8 +157,27 @@ class _ChatViewState extends State<Chat> {
                   border: InputBorder.none,
                 ),
                 onSend: sendMessage,
+                inverted: false,
+                dateFormat: DateFormat('yyyy-MMM-dd'),
+                timeFormat: DateFormat('HH:mm'),
                 showAvatarForEveryMessage: true,
                 showUserAvatar: true,
+                scrollToBottom: true,
+                inputMaxLines: 5,
+                messageContainerPadding: EdgeInsets.only(),
+                alwaysShowSend: true,
+                inputTextStyle: TextStyle(fontSize: 16.0),
+                onLoadEarlier: () {
+                  print("laoding...");
+                },
+                shouldShowLoadEarlier: false,
+                inputContainerStyle: BoxDecoration(
+                  border: Border.all(width: 0.0),
+                  color: Colors.white,
+                ),
+                onPressAvatar: (ChatUser user) {
+                  print("OnPressAvatar: ${user.name}");
+                },
                 trailing: <Widget>[
                   // IconButton(
                   //   icon: Icon(Icons.photo),
