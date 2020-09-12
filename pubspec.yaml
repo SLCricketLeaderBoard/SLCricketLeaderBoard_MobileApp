@@ -28,7 +28,6 @@ dependencies:
   cloud_firestore: ^0.13.6
   firebase_core: ^0.4.5
   toast: ^0.1.5
-<<<<<<< HEAD
   shared_preferences: ^0.5.8
   table_calendar: ^2.2.3
   rate_my_app: ^0.6.1+6
@@ -37,10 +36,8 @@ dependencies:
   url_launcher: ^5.5.0
   image: ^2.1.12
 
-=======
   intl: ^0.15.8
   dash_chat: ^1.0.4
->>>>>>> dbd279c052b4831a088166d80b8483c20a19c34c
 
 dev_dependencies:
   flutter_test:
