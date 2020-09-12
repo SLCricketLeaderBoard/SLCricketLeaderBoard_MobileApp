@@ -100,6 +100,8 @@ class _ChatViewState extends State<Chat> {
     }
   }
 
+  checkUser() {}
+
   @override
   void initState() {
     this.getClubData();
@@ -124,7 +126,6 @@ class _ChatViewState extends State<Chat> {
         title: new Text(_data["clubName"] + " " + "Chat"),
         backgroundColor: Colors.grey[500],
       ),
-
       backgroundColor: Colors.grey[800],
       body: StreamBuilder(
           stream: _messageData,
@@ -139,8 +140,35 @@ class _ChatViewState extends State<Chat> {
             } else {
               List<DocumentSnapshot> items = snapshot.data.documents;
               List<ChatMessage> messg = <ChatMessage>[];
+              var _data = [];
 
-              items.forEach((res) {
+              items.forEach((element) {
+                if (this.widget.value["nic"] != element["nic"]) {
+                  _data.add({
+                    "text": element.data["text"],
+                    "club_id": element.data["club_id"],
+                    "nic": element.data["nic"],
+                    "profileImage": element.data["profileImage"],
+                    "Date": element.data["Date"],
+                    "time": element.data["time"],
+                    "type": "in",
+                    "userName": element.data["userName"],
+                  });
+                } else {
+                  _data.add({
+                    "text": element.data["text"],
+                    "club_id": element.data["club_id"],
+                    "nic": element.data["nic"],
+                    "profileImage": element.data["profileImage"],
+                    "Date": element.data["Date"],
+                    "time": element.data["time"],
+                    "type": element.data["type"],
+                    "userName": element.data["userName"],
+                  });
+                }
+              });
+              // print(_data);
+              _data.forEach((res) {
                 ChatMessage msg = new ChatMessage(
                   text: res["text"],
                   user: user,
@@ -148,6 +176,15 @@ class _ChatViewState extends State<Chat> {
                 );
                 messg.add(msg);
               });
+
+              // items.forEach((res) {
+              //   ChatMessage msg = new ChatMessage(
+              //     text: res["text"],
+              //     user: user,
+              //     createdAt: DateTime.now(),
+              //   );
+              //   messg.add(msg);
+              // });
 
               return DashChat(
                 user: user,
@@ -157,7 +194,6 @@ class _ChatViewState extends State<Chat> {
                   border: InputBorder.none,
                 ),
                 onSend: sendMessage,
-                inverted: false,
                 dateFormat: DateFormat('yyyy-MMM-dd'),
                 timeFormat: DateFormat('HH:mm'),
                 showAvatarForEveryMessage: true,
@@ -165,6 +201,7 @@ class _ChatViewState extends State<Chat> {
                 scrollToBottom: true,
                 inputMaxLines: 5,
                 messageContainerPadding: EdgeInsets.only(),
+                messageContainerDecoration: BoxDecoration(color: Colors.blue),
                 alwaysShowSend: true,
                 inputTextStyle: TextStyle(fontSize: 16.0),
                 onLoadEarlier: () {
@@ -187,140 +224,6 @@ class _ChatViewState extends State<Chat> {
               );
             }
           }),
-      // body: SafeArea(
-      //   child: Container(
-      //     child: Stack(
-      //       fit: StackFit.loose,
-      //       children: <Widget>[
-      //         Column(
-      //           crossAxisAlignment: CrossAxisAlignment.start,
-      //           // mainAxisAlignment: MainAxisAlignment.start,
-      //           // mainAxisSize: MainAxisSize.max,
-      //           children: <Widget>[
-      //             // SizedBox(
-      //             //   height: 65,
-      //             //   child: Container(
-      //             //     color: Colors.blue.withOpacity(1),
-      //             //     child: Row(
-      //             //       children: <Widget>[
-      //             //         IconButton(
-      //             //           icon: Icon(
-      //             //             Icons.arrow_back,
-      //             //             color: Colors.white,
-      //             //           ),
-      //             //           onPressed: () {
-      //             //             Navigator.pop(context);
-      //             //           },
-      //             //         ),
-      //             //         Spacer(),
-      //             //         Column(
-      //             //           crossAxisAlignment: CrossAxisAlignment.center,
-      //             //           mainAxisAlignment: MainAxisAlignment.center,
-      //             //           children: <Widget>[
-      //             //             // Text(
-      //             //             //   widget.username ?? "Jimi Cooke",
-      //             //             //   style: TextStyle(color: Colors.white, fontSize: 15),
-      //             //             // ),
-      //             //             Text(
-      //             //               "online",
-      //             //               style: TextStyle(
-      //             //                   color: Colors.white60, fontSize: 12),
-      //             //             ),
-      //             //           ],
-      //             //         ),
-      //             //         Spacer(),
-      //             //         Padding(
-      //             //           padding:
-      //             //               const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
-      //             //           child: Container(
-      //             //             child: ClipRRect(
-      //             //               child: Container(
-      //             //                   child: SizedBox(
-      //             //                       // child: Image.asset(
-      //             //                       //   "assets/images/person1.jpg",
-      //             //                       //   fit: BoxFit.cover,
-      //             //                       // ),
-      //             //                       ),
-      //             //                   color: Colors.orange),
-      //             //               borderRadius: new BorderRadius.circular(50),
-      //             //             ),
-      //             //             height: 55,
-      //             //             width: 55,
-      //             //             padding: const EdgeInsets.all(0.0),
-      //             //             decoration: new BoxDecoration(
-      //             //                 shape: BoxShape.circle,
-      //             //                 color: Colors.white,
-      //             //                 boxShadow: [
-      //             //                   BoxShadow(
-      //             //                       color: Colors.black26,
-      //             //                       blurRadius: 5.0,
-      //             //                       spreadRadius: -1,
-      //             //                       offset: Offset(0.0, 5.0))
-      //             //                 ]),
-      //             //           ),
-      //             //         ),
-      //             //       ],
-      //             //     ),
-      //             //   ),
-      //             // ),
-      //             Divider(
-      //               height: 0,
-      //               color: Colors.black54,
-      //             ),
-      //             Flexible(
-      //               fit: FlexFit.tight,
-      //               // height: 500,
-      //               child: Container(
-      //                 width: MediaQuery.of(context).size.width,
-      //                 // decoration: BoxDecoration(
-      //                 //   image: DecorationImage(
-      //                 //       image: AssetImage(
-      //                 //           "assets/images/chat-background-1.jpg"),
-      //                 //       fit: BoxFit.cover,
-      //                 //       colorFilter: ColorFilter.linearToSrgbGamma()),
-      //                 // ),
-      //                 child: SingleChildScrollView(
-      //                     controller: _scrollController,
-      //                     // reverse: true,
-      //                     child: Column(
-      //                       crossAxisAlignment: CrossAxisAlignment.start,
-      //                       mainAxisAlignment: MainAxisAlignment.start,
-      //                       children: childList,
-      //                     )),
-      //               ),
-      //             ),
-      //             Divider(height: 0, color: Colors.black26),
-      //             // SizedBox(
-      //             //   height: 50,
-      //             Container(
-      //               color: Colors.white,
-      //               height: 50,
-      //               child: Padding(
-      //                 padding: const EdgeInsets.only(left: 8.0),
-      //                 child: TextField(
-      //                   maxLines: 20,
-      //                   controller: _text,
-      //                   decoration: InputDecoration(
-      //                     // contentPadding: const EdgeInsets.symmetric(horizontal: 5.0),
-      //                     suffixIcon: IconButton(
-      //                       icon: Icon(Icons.send),
-      //                       onPressed: () {
-      //                         this.sendMessage();
-      //                       },
-      //                     ),
-      //                     border: InputBorder.none,
-      //                     hintText: "enter your message",
-      //                   ),
-      //                 ),
-      //               ),
-      //             ),
-      //             // ),
-      //           ],
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
       drawer: AppDrawer(value: widget.value),
     );
   }
