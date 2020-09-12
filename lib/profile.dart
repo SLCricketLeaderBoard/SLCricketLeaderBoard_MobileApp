@@ -282,7 +282,7 @@ class Profile extends StatelessWidget {
                               )),
                         ),
                         ListTile(
-                          leading: Icon(Icons.account_box),
+                          leading: Icon(Icons.account_circle),
                           title: Text("Name with initials",
                               style: TextStyle(
                                 fontSize: 20.0,
@@ -295,13 +295,65 @@ class Profile extends StatelessWidget {
                               )),
                         ),
                         ListTile(
-                          leading: Icon(Icons.account_box),
+                          leading: Icon(Icons.my_location),
                           title: Text("Address",
                               style: TextStyle(
                                 fontSize: 20.0,
                                 fontFamily: 'Neucha',
                               )),
                           subtitle: Text(value["address"],
+                              style: TextStyle(
+                                fontSize: 15.0,
+                                fontFamily: 'Neucha',
+                              )),
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.perm_identity),
+                          title: Text("NIC",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontFamily: 'Neucha',
+                              )),
+                          subtitle: Text(value["nic"],
+                              style: TextStyle(
+                                fontSize: 15.0,
+                                fontFamily: 'Neucha',
+                              )),
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.email),
+                          title: Text("Email Address",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontFamily: 'Neucha',
+                              )),
+                          subtitle: Text(value["email"],
+                              style: TextStyle(
+                                fontSize: 15.0,
+                                fontFamily: 'Neucha',
+                              )),
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.phone),
+                          title: Text("Contact Number",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontFamily: 'Neucha',
+                              )),
+                          subtitle: Text(value["contactNumber"],
+                              style: TextStyle(
+                                fontSize: 15.0,
+                                fontFamily: 'Neucha',
+                              )),
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.access_time),
+                          title: Text("Registration Date",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontFamily: 'Neucha',
+                              )),
+                          subtitle: Text(value["regDate"],
                               style: TextStyle(
                                 fontSize: 15.0,
                                 fontFamily: 'Neucha',
