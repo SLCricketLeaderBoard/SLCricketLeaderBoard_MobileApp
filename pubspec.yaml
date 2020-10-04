@@ -52,7 +52,6 @@ flutter:
   assets:
     - assets/logo.png
     - assets/logo1.png
-<<<<<<< HEAD
     - assets/note.png
     - assets/cale1.png
     - assets/calc1.png
@@ -65,10 +64,7 @@ flutter:
     - assets/li1.png
     - assets/todo.png
     - assets/lol.png
-    
-=======
     - assets/avatar.png
->>>>>>> dbd279c052b4831a088166d80b8483c20a19c34c
 
 
   # To add assets to your application, add an assets section, like this:
