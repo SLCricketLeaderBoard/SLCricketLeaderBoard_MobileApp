@@ -61,7 +61,7 @@ class Profile extends StatelessWidget {
                                 child: Column(
                                   children: <Widget>[
                                     Text(
-                                      "Posts",
+                                      "Win ",
                                       style: TextStyle(
                                         color: Colors.redAccent,
                                         fontSize: 22.0,
@@ -85,7 +85,7 @@ class Profile extends StatelessWidget {
                                 child: Column(
                                   children: <Widget>[
                                     Text(
-                                      "Followers",
+                                      "Grow ",
                                       style: TextStyle(
                                         color: Colors.redAccent,
                                         fontSize: 22.0,
@@ -109,7 +109,7 @@ class Profile extends StatelessWidget {
                                 child: Column(
                                   children: <Widget>[
                                     Text(
-                                      "Follow",
+                                      "Fail ",
                                       style: TextStyle(
                                         color: Colors.redAccent,
                                         fontSize: 22.0,
@@ -269,4 +269,4 @@ class Profile extends StatelessWidget {
 }
 /*
 new
-*/ 
+*/
