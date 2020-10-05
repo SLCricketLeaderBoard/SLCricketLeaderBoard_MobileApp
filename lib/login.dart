@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
   }
   /*
 new
-*/ 
+*/
 
   void signIn() async {
     if (_formkey.currentState.validate()) {
@@ -181,4 +181,4 @@ new
           return Future.value(false);
         });
   }
-} 
+}

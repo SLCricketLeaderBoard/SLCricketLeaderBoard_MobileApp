@@ -72,7 +72,7 @@ class Profile extends StatelessWidget {
                                       height: 5.0,
                                     ),
                                     Text(
-                                      "5200",
+                                      "0",
                                       style: TextStyle(
                                         fontSize: 20.0,
                                         color: Colors.pinkAccent,
@@ -96,7 +96,7 @@ class Profile extends StatelessWidget {
                                       height: 5.0,
                                     ),
                                     Text(
-                                      "28.5K",
+                                      "0",
                                       style: TextStyle(
                                         fontSize: 20.0,
                                         color: Colors.pinkAccent,
@@ -120,7 +120,7 @@ class Profile extends StatelessWidget {
                                       height: 5.0,
                                     ),
                                     Text(
-                                      "1300",
+                                      "0",
                                       style: TextStyle(
                                         fontSize: 20.0,
                                         color: Colors.pinkAccent,

@@ -61,6 +61,16 @@ class AppDrawer extends StatelessWidget {
                     builder: (context) => Club(
                           value: this.value,
                         ))),
+          ),
+          _createDrawerItem(
+            icon: Icons.group,
+            text: 'Club Members',
+            onTap: () => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Club(
+                          value: this.value,
+                        ))),
           )
         ],
       ),
