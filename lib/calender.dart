@@ -11,7 +11,7 @@ new
 
 
 class CalenderPage extends StatefulWidget {
-  var value;
+  var value; 
   CalenderPage({Key key, this.value}) : super(key: key);
 
   static String tag = 'calculator-page';
