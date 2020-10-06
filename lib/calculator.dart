@@ -104,7 +104,7 @@ class CalculatorPageState extends State<CalculatorPage> {
     //  r = interest rate
     //  n = total number of payments or periods
 
-    double A = 0.0;
+    double A = 0;
     int P = int.parse(_total1.text);
     double r = int.parse(_wickets1.text) / 1;
     int n1 = int.parse(_overs1.text);

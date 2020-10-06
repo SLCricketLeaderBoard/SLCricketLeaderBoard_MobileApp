@@ -33,12 +33,15 @@ dependencies:
   rate_my_app: ^0.6.1+6
   smooth_star_rating: ^1.1.1
   app_review: ^1.1.2
-  url_launcher: ^5.5.0
+  url_launcher: ^5.5.0 
   image: ^2.1.12
   marquee: ^1.6.1
+  
 
   intl: ^0.15.8
   dash_chat: ^1.0.4
+  presentation: ^0.0.11
+  font_awesome_flutter: ^8.9.0
 
 dev_dependencies:
   flutter_test:
