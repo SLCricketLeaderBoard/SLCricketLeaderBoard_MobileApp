@@ -5,6 +5,7 @@ import 'package:app_review/app_review.dart';
 
 class ReviewPage extends StatefulWidget {
   /// Creates a new Rate my app test app instance.
+  
   var value;
   ReviewPage({Key key, this.value}) : super(key: key);
 

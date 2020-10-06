@@ -19,42 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #Drawer
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -64,46 +29,7 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #Chat
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -113,55 +39,7 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Calender
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#Calende
 
 #Review
 
@@ -169,29 +47,7 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 #Extra
-
-
-
-
-
-
-
-
-
-
-
 
 
 
