@@ -198,7 +198,7 @@ class _ChatViewState extends State<Chat> {
                 timeFormat: DateFormat('HH:mm'),
                 showAvatarForEveryMessage: true,
                 showUserAvatar: true,
-                scrollToBottom: true,
+                scrollToBottom: false,
                 inputMaxLines: 5,
                 messageContainerPadding: EdgeInsets.only(),
                 messageContainerDecoration: BoxDecoration(color: Colors.blue),

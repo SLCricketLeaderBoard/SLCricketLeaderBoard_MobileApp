@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 /*
 new
-*/ 
+*/
 class Club extends StatefulWidget {
   var value;
 
@@ -74,9 +74,10 @@ class _ClubViewState extends State<Club> {
               color: Colors.teal[900],
             ),
             title: Text(
-              "Kasun Silvaa",
+              "Manager",
               style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
             ),
+            subtitle: Text("Kasun Silva"),
           ),
         ),
         Card(
@@ -88,39 +89,14 @@ class _ClubViewState extends State<Club> {
               color: Colors.teal[900],
             ),
             title: Text(
-              _data["email"],
+              "Club Email Address",
               style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+            ),
+            subtitle: Text(
+              _data["email"],
             ),
           ),
         ),
-        // Card(
-        //   color: Colors.white,
-        //   margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
-        //   child: ListTile(
-        //     leading: Icon(
-        //       Icons.person_pin,
-        //       color: Colors.teal[900],
-        //     ),
-        //     title: Text(
-        //       this.widget.value["nic"],
-        //       style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
-        //     ),
-        //   ),
-        // ),
-        // Card(
-        //   color: Colors.white,
-        //   margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
-        //   child: ListTile(
-        //     leading: Icon(
-        //       Icons.add_location,
-        //       color: Colors.teal[900],
-        //     ),
-        //     title: Text(
-        //       this.widget.value["address"],
-        //       style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
-        //     ),
-        //   ),
-        // ),
         Card(
           color: Colors.white,
           margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
@@ -130,9 +106,10 @@ class _ClubViewState extends State<Club> {
               color: Colors.teal[900],
             ),
             title: Text(
-              _data["contactNumber"],
+              "Contact No",
               style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
             ),
+            subtitle: Text(_data["contactNumber"]),
           ),
         ),
         Card(
@@ -144,9 +121,10 @@ class _ClubViewState extends State<Club> {
               color: Colors.teal[900],
             ),
             title: Text(
-              _data["regDate"],
+              "Registraion Date",
               style: TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
             ),
+            subtitle: Text(_data["regDate"]),
           ),
         ),
       ]),
