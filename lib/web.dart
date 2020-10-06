@@ -21,7 +21,7 @@ class WebPage extends StatelessWidget {
         body: WebPageState(), 
         backgroundColor: Colors.lightBlue,
         appBar: AppBar(
-        title: Text("DL Calculator"),
+        title: Text("LIVE STREAMING"),
         elevation: 0.0
       ),
       
