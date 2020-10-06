@@ -1,4 +1,5 @@
 import 'package:crickdom/chat.dart';
+import 'package:crickdom/members.dart';
 import 'package:crickdom/profile.dart';
 import 'package:crickdom/club.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,7 @@ class AppDrawer extends StatelessWidget {
             onTap: () => Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => Club(
+                    builder: (context) => Members(
                           value: this.value,
                         ))),
           )
